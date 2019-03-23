@@ -1,0 +1,159 @@
+\documentclass[
+	a4paper
+]{scrreprt}
+
+%%% PACKAGES %%%
+
+% add unicode support and use german as language
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% Use Helvetica as font
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+% Better tables
+\usepackage{tabularx}
+
+% Better enumerisation env
+\usepackage{enumitem}
+
+% Use graphics
+\usepackage{graphicx}
+
+% Have subfigures and captions
+\usepackage{subcaption}
+
+% Be able to include PDFs in the file
+\usepackage{pdfpages}
+
+% Have custom abstract heading
+\usepackage{abstract}
+
+% Need a list of equation
+\usepackage{tocloft}
+\usepackage{ragged2e}
+
+% Better equation environment
+\usepackage{amsmath}
+
+% Symbols for most SI units
+\usepackage{siunitx}
+
+\usepackage{csquotes}
+
+% Clickable Links to Websites and chapters
+\usepackage{hyperref}
+
+% Change page rotation
+\usepackage{pdflscape}
+
+% Symbols like checkmark
+\usepackage{amssymb}
+\usepackage{pifont}
+
+\usepackage[absolute]{textpos}
+
+% Glossary, hyperref, babel, polyglossia, inputenc, fontenc must be loaded before this package if they are used
+\usepackage{glossaries}
+% Redefine the quote charachter as we are using ngerman
+\GlsSetQuote{+}
+% Define the usage of an acronym, Abbreviation (Abbr.), next usage: The Abbr. of ...
+\setacronymstyle{long-short}
+
+% Bibliography & citing
+\usepackage[
+	backend=biber,
+	style=apa,
+	bibstyle=apa,
+	citestyle=apa,
+	sortlocale=de_DE
+	]{biblatex}
+\addbibresource{Referenzen.bib}
+\DeclareLanguageMapping{ngerman}{ngerman-apa}
+
+%%% COMMAND REBINDINGS %%%
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\xmark}{\ding{55}}
+
+% Define list of equations - Thanks to Charles Clayton: https://tex.stackexchange.com/a/354096
+\newcommand{\listequationsname}{\huge{Formelverzeichnis}}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{
+	\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}
+}
+\setlength{\cftmyequationsnumwidth}{2.3em}
+\setlength{\cftmyequationsindent}{1.5em}
+
+% Usage {equation}{caption}{label}
+% \indexequation{b = \frac{\pi}{\SI{180}{\degree}}\cdot\beta\cdot 6378.137}{Bogenlänge $b$ des Winkels $\beta$ mit Radius 6378.137m (Distanz zum Erdmittelpunkt am Äquator)}{Bogenlaenge}
+\newcommand{\indexequation}[3]{
+	\begin{align} \label{#3} \ensuremath{\boxed{#1}} \end{align}
+	\myequations{#3} \centering \small \textit{#2} \normalsize \justify }
+
+% Todolist - credit to https://tex.stackexchange.com/questions/247681/how-to-create-checkbox-todo-list
+\newlist{todolist}{itemize}{1}
+\setlist[todolist]{label=$\square$}
+
+%%% PATH DEFINITIONS %%%
+% Define the path were images are found
+\graphicspath{{./img/}{./pdf/}}
+
+%%% GLOSSARY ENTRIES %%%
+\makeglossaries
+\newacronym{RFID}{RFID}{Radio-Frequency Identification}
+\newglossaryentry{HF}{name={HF},description={High Frequency, RFID Tags im Frequenzbereich von 3-30MHz}}
+\newglossaryentry{UHF}{name={UHF},description={Ultra High Frequency, RFID Tags im Frequenzbereich von 0.3-30GHz}}
+
+%%% DOCUMENT %%%
+
+\begin{document}
+
+\include{HSLU_Preamble}
+
+\pagenumbering{Roman}
+
+\renewcommand{\abstractname}{Management Summary}
+\begin{abstract}
+	Abstract
+\end{abstract}
+
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+
+\include{include/Einleitung}
+
+\include{include/Stand_der_Technik}
+
+\include{include/Ideen_und_Konzepte}
+
+\include{include/Methode}
+
+\include{include/Realisierung}
+
+\include{include/Projektmanagementplan}
+
+\include{include/Evaluation_und_Validation}
+
+\include{include/Ausblick}
+
+\newpage
+
+\pagenumbering{Roman}
+
+\appendix
+
+\printglossary
+
+\listoffigures
+
+\listoftables
+
+\listofmyequations \pagebreak
+
+\printbibliography
+
+\end{document}
