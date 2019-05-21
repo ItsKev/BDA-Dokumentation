@@ -96,6 +96,8 @@
 \newlist{todolist}{itemize}{1}
 \setlist[todolist]{label=$\square$}
 
+\newcommand{\done}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
 %%% PATH DEFINITIONS %%%
 % Define the path were images are found
 \graphicspath{{./img/}{./pdf/}}
@@ -158,7 +160,5 @@
 \listofmyequations \pagebreak
 
 \printbibliography
-
-\include{include/Eidesstattliche_Erklaerung}
 
 \end{document}
