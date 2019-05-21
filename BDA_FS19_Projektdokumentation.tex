@@ -103,20 +103,23 @@
 %%% GLOSSARY ENTRIES %%%
 \makeglossaries
 \newacronym{RFID}{RFID}{Radio-Frequency Identification}
-\newglossaryentry{HF}{name={HF},description={High Frequency, RFID Tags im Frequenzbereich von 3-30MHz}}
-\newglossaryentry{UHF}{name={UHF},description={Ultra High Frequency, RFID Tags im Frequenzbereich von 0.3-30GHz}}
 
 %%% DOCUMENT %%%
 
 \begin{document}
 
-\include{HSLU_Preamble}
+\include{include/HSLU_Preamble}
 
 \pagenumbering{Roman}
 
-\renewcommand{\abstractname}{Management Summary}
+\renewcommand{\abstractname}{Abstract}
 \begin{abstract}
-	Abstract
+	\noindent In der vorliegenden Arbeit wurde eine Multi-User taugliche Applikation in Virtual Reality entwickelt. Die Applikation ist darauf ausgelegt, Objekte in der virtuellen Realität gemeinsam zu betrachten und zu manipulieren und währendem miteinander über die Objekte zu diskutieren. Um das Projekt umzusetzen wurde die Virtual Reality Brille HTC-Vive eingesetzt. Dank dem Einsatz des Steam VR Assets kann das Projekt aber ohne grosse Probleme mit anderen Virtual Reality Brillen gestartet werden. \\
+	
+	\noindent Das Projekt wurde in zwei Phasen entwickelt. Die erste Phase widmete sich der Interaktion einer Person mit den Objekten in der virtuellen Realität. Anhand einer Nutzerevaluation wurde evaluiert, welche von drei Varianten sich am besten eignete, um dem Nutzer mitzuteilen, dass zwei Objekte miteinander kollidiert sind. Durchgesetzt hat sich die Variante, bei welcher dem Nutzer via Vibration am entsprechenden Kontroller ein haptisches Feedback gegeben wird, sobald er mit dem Objekt in seiner Hand ein anderes Objekt berührt.
+	
+	\noindent Die zweite Phase widmete sich der Multi-User Funktionalität. Für die Netzwerkkommunikation zwischen den verschiedenen Usern wurde die Photon Engine eingesetzt, welche eine einfache Anbindung an Unity erlaubte. Dass die Nutzer miteinander Kommunizieren können wurde das Photon Voice Plugin verwendet. 
+	%TODO: Auswertung zweite Evaluation 
 \end{abstract}
 
 \tableofcontents
@@ -128,15 +131,15 @@
 
 \include{include/Stand_der_Technik}
 
+\include{include/Methoden}
+
 \include{include/Ideen_und_Konzepte}
 
-\include{include/Methode}
+\include{include/Single_User_Interaktion}
 
-\include{include/Realisierung}
+\include{include/Multi_User_Interaktion}
 
-\include{include/Projektmanagementplan}
-
-\include{include/Evaluation_und_Validation}
+\include{include/Schlussfolgerung}
 
 \include{include/Ausblick}
 
@@ -155,5 +158,7 @@
 \listofmyequations \pagebreak
 
 \printbibliography
+
+\include{include/Eidesstattliche_Erklaerung}
 
 \end{document}
