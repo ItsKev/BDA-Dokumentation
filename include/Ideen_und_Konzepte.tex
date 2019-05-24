@@ -1,2 +1,38 @@
 \chapter{Ideen und Konzepte}
 \label{ch:Ideen_und_Konzepte}
+
+\section{Single-User Prototyp}
+Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen die folgenden Features in der Umsetzung geplant:
+
+\subsection{Highlighten}
+Um dem Benutzer zu zeigen, mit welchem Bauteil er interagieren kann, soll das Bauteil, in welchem sich seine Hand aktuell befindet, markiert werden. Dabei soll die Markierung für den Benutzer gut sichtbar sein, nicht aber die Sicht auf das Bauteil selbst versperren.
+	
+	%TODO: Steam VR Bild vom Highlighting
+	
+\subsection{Snapping}
+Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwierig sein. Um dem entgegenzuwirken sollen Bauteile, welche sich in der Nähe ihres vorgesehenen Ortes befinden, beim loslassen automatisch an ihre richtige Position bewegt werden. Um dem Benutzer mitzuteilen, dass das Bauteil an eine Position "gesnappt" werden kann, soll die Silhouette des Bauteils am vorgesehen Ort erscheinen. 
+	
+\subsection{Kollision}
+Beim Bewegen der Bauteile sollten diese an anderen statischen Bauteilen in der virtuellen Umgebung abprallen, um der Realität so nahe wie möglich zu kommen. 
+	
+\subsection{Feedback beim Zusammenbau / Manipulation der Objekte}
+Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem Benutzer eine Art Feedback gegeben werden, sobald zwei Bauteile kollidieren. Dies soll dem Benutzer auch beim Zusammenbauen der Objekte behilflich sein. In der Tabelle \ref{tbl:varianten_zusammenbau} sind drei Varianten aufgelistet, welche dieses Problem lösen könnten. Anhand eines Nutzertests soll evaluiert werden, welcher dieser Varianten sich am besten für dieses Problem eignet.
+	
+\begin{center}
+	\begin{tabularx} {\textwidth} { |X|X|X| }
+		\hline
+		\rowcolor{black}
+		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
+		\color{white} \textbf{Contra} \\
+		\hline
+		Visuelles Feedback, falls ein Bauteil mit einem anderen kollidiert & - Ist für alle Nutzer sichtbar & - Kann dem Benutzer sehr unnatürlich erscheinen \\
+		\hline
+		Einschränkungen der Freiheitsgrade sobald das Bauteil eine gewisse Position erreicht, wie in Abbildung \ref{fig:VADEAssembly} zu sehen. & - Das Zusammenbauen des Bauteils wird dem Benutzer erleichtert & - Kein Feedback falls eine falsche Bewegung durchgeführt wird \\
+		\hline
+		Vibration Feedback bei einer falschen Bewegung & - Der Benutzer bemerkt die falsche Bewegung, ohne hinzusehen & - Nur der bearbeitende Benutzer bemerkt die falsche Bewegung \\
+		\hline	
+	\end{tabularx}
+\end{center}
+\captionof{table}{Varianten für das Feedback beim Zusammenbau}\label{tbl:varianten_zusammenbau}
+
+\section{Multi-User Prototyp}
