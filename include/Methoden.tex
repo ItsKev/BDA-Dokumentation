@@ -154,4 +154,33 @@ Schadensausmass (SA)
 \end{center}
 \captionof{table}{Schadensausmass}\label{tbl:schadensausmass}
 
+
+Zusammenstellung mögliche Risiken
+\begin{center}
+	\begin{tabularx}{\textwidth} { |l|l|X|l|l| }
+		\hline
+		\rowcolor{black}
+		\color{white} \textbf{id} & \color{white} \textbf{Risiko} & \color{white} \textbf{Beschreibung} & \color{white} \textbf{EW} & \color{white} \textbf{SA} \\
+		\hline
+		R1 & Netzwerk-Synchronisation Probleme & Die Synchronisierung der Bauteile über das Netzwerk ist zu langsam oder kann in VR nicht umgesetzt werden. & 2 & 2 \\
+		\hline
+		R2 & Hardware defekt & Während des Projektes kann ein Hardware defekt an einer der Virtual Reality Brillen auftreten. & 1 & 3 \\
+		\hline
+		R3 & Grosser Schaden & Test & 1 & 1 \\
+		\hline
+	\end{tabularx}
+\end{center}
+\captionof{table}{Risiken vorher}\label{tbl:risiken_vorher}
+
+% TODO: Risiken fertig zusammenstellen
+
+
 \section{Verwendete Hardware}
+Um die Prototypen entwickeln zu können wird die HTC Vive (Abbildung \ref{fig:htc_vive}) verwendet. Umgesetzt wird die Programmierung der Applikationen mit der Game-Engine Unity und dem SteamVR Plugin, welches eine einfache Integrierung der Virtual Reality Brillen in Unity erlaubt. SteamVR stellt diverse Prototypen und Beispielapplikationen zur Verfügung um dem Programmierer den Einstig so einfach wie möglich zu machen. \\
+Dank dem SteamVR Plugin ist es möglich, ohne grossen Aufwand, die verwendete VR-Brille gegen eine andere auszutauschen.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Vive_Pro.jpg}
+	\caption{HTC Vive}
+	\label{fig:htc_vive}
+\end{figure}
