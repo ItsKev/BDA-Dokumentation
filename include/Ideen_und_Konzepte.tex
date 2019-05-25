@@ -35,4 +35,30 @@ Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem
 \end{center}
 \captionof{table}{Varianten für das Feedback beim Zusammenbau}\label{tbl:varianten_zusammenbau}
 
+\subsection{Architektur}
+% TODO: Architektur Diagramm
+
 \section{Multi-User Prototyp}
+Der Multi-User Prototyp soll auf dem Single-User Prototyp aufbauen und alle Features von diesem implementieren. Die Erkenntnisse aus der ersten Nutzerevaluation sollen ebenfalls in den zweiten Prototypen einfliessen.
+
+Anhand der Erkenntnissen aus den Recherchen, sind die folgenden Features in der Umsetzung geplant:
+
+\subsection{Kommunikation zwischen den Benutzern}
+\begin{center}
+	\begin{tabularx} {\textwidth} { |X|X|X| }
+		\hline
+		\rowcolor{black}
+		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
+		\color{white} \textbf{Contra} \\
+		\hline
+		Audio-Aufnahmen mit dem Mikrofon und Wiedergabe über die Kopfhörer des Gerätes & - Kann über jegliche Distanzen verwendet werden & - Das Gerät muss ein Mikrofon sowie ein Lautsprecher besitzen \\
+		\hline
+		Direkte Kommunikation mit dem Gegenüber & - Benötigt keine technische Implementation & - Beide Benutzer müssen sich im selben Raum befinden \\
+		\hline
+		Kommunikation anhand der Körpersprache - Gesten und Gaze & - Einfach und verständlich & - Eingeschränkte Kommunikation \\
+		\hline	
+	\end{tabularx}
+\end{center}
+\captionof{table}{Varianten für die Kommunikation zwischen den Benutzern}\label{tbl:varianten_kommunikation}
+
+Da die Applikation auch verteilt über mehrere Standorte funktionieren soll, muss entweder Variante eins oder drei aus der Tabelle \ref{tbl:varianten_kommunikation} umgesetzt werden. Um die Kommunikation zwischen den Benutzern so verständlich wie möglich zu machen werden die Varianten eins und drei in Kombination miteinander implementiert.
