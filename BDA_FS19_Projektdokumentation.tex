@@ -32,6 +32,9 @@
 % Have custom abstract heading
 \usepackage{abstract}
 
+% Header / Footer
+\usepackage{fancyhdr}
+
 % Need a list of equation
 \usepackage{tocloft}
 \usepackage{ragged2e}
@@ -129,6 +132,11 @@
 
 \clearpage
 \pagenumbering{arabic}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\leftmark}
+\cfoot{\thepage}
 
 \include{include/Einleitung}
 
