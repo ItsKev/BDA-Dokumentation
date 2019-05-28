@@ -4,10 +4,16 @@
 \section{Single-User Prototyp}
 Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen die folgenden Features in der Umsetzung geplant:
 
-\subsection{Highlighten}
-Um dem Benutzer zu zeigen, mit welchem Bauteil er interagieren kann, soll das Bauteil, in welchem sich seine Hand aktuell befindet, markiert werden. Dabei soll die Markierung für den Benutzer gut sichtbar sein, nicht aber die Sicht auf das Bauteil selbst versperren.
-	
-	%TODO: Steam VR Bild vom Highlighting
+\subsection{Highlight}
+Um dem Benutzer zu zeigen, mit welchem Bauteil er interagieren kann, soll das Bauteil, in welchem sich seine Hand aktuell befindet, markiert werden. Dabei soll die Markierung für den Benutzer gut sichtbar sein, nicht aber die Sicht auf das Bauteil selbst versperren. \\
+Im SteamVR-Asset befindet sich eine Beispiel Szene (Interactions\_Example), um die Handhabung mit dem Asset besser kennen zu lernen. In dieser Szene werden Objekte mit einer gelben Umrandung versehen, zu sehen in Abbildung \ref{fig:steamvr_highlight}, sobald sich ein Controller des Benutzers im Objekt befindet.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/SteamVR_Highlight.PNG}
+	\caption{SteamVR Highlight}
+	\label{fig:steamvr_highlight}
+\end{figure}
 	
 \subsection{Snapping}
 Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwierig sein. Um dem entgegenzuwirken sollen Bauteile, welche sich in der Nähe ihres vorgesehenen Ortes befinden, beim loslassen automatisch an ihre richtige Position bewegt werden. Um dem Benutzer mitzuteilen, dass das Bauteil an eine Position "gesnappt" werden kann, soll die Silhouette des Bauteils am vorgesehen Ort erscheinen. 
@@ -19,17 +25,39 @@ Beim Bewegen der Bauteile sollten diese an anderen statischen Bauteilen in der v
 Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem Benutzer eine Art Feedback gegeben werden, sobald zwei Bauteile kollidieren. Dies soll dem Benutzer auch beim Zusammenbauen der Objekte behilflich sein. In der Tabelle \ref{tbl:varianten_zusammenbau} sind drei Varianten aufgelistet, welche dieses Problem lösen könnten. Anhand eines Nutzertests soll evaluiert werden, welcher dieser Varianten sich am besten für dieses Problem eignet.
 	
 \begin{center}
-	\begin{tabularx} {\textwidth} { |X|X|X| }
+	\begin{tabularx} {\textwidth} { | B | B | B | }
 		\hline
 		\rowcolor{black}
 		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
 		\color{white} \textbf{Contra} \\
 		\hline
-		Visuelles Feedback, falls ein Bauteil mit einem anderen kollidiert & - Ist für alle Nutzer sichtbar & - Kann dem Benutzer sehr unnatürlich erscheinen \\
+		\vspace{1pt}
+		Visuelles Feedback, falls ein Bauteil mit einem anderen kollidiert & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Ist für alle Nutzer sichtbar
+		\end{itemize} &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Kann dem Benutzer sehr unnatürlich erscheinen
+		\end{itemize} \\
 		\hline
-		Einschränkungen der Freiheitsgrade sobald das Bauteil eine gewisse Position erreicht, wie in Abbildung \ref{fig:VADEAssembly} zu sehen. & - Das Zusammenbauen des Bauteils wird dem Benutzer erleichtert & - Kein Feedback falls eine falsche Bewegung durchgeführt wird \\
+		\vspace{1pt}
+		Einschränkungen der Freiheitsgrade sobald das Bauteil eine gewisse Position erreicht, wie in Abbildung \ref{fig:VADEAssembly} zu sehen. 
+		\vspace{2pt} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Das Zusammenbauen des Bauteils wird dem Benutzer erleichtert
+		\end{itemize} &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Kein Feedback falls eine falsche Bewegung durchgeführt wird
+		\end{itemize} \\
 		\hline
-		Vibration Feedback bei einer falschen Bewegung & - Der Benutzer bemerkt die falsche Bewegung, ohne hinzusehen & - Nur der bearbeitende Benutzer bemerkt die falsche Bewegung \\
+		\vspace{1pt}
+		Vibration Feedback bei einer falschen Bewegung & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Der Benutzer bemerkt die falsche Bewegung, ohne hinzusehen
+		\end{itemize} &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Nur der bearbeitende Benutzer bemerkt die falsche Bewegung
+		\end{itemize} \\
 		\hline	
 	\end{tabularx}
 \end{center}
@@ -46,17 +74,38 @@ Anhand der Erkenntnissen aus den Recherchen, sind die folgenden Features in der 
 
 \subsection{Kommunikation zwischen den Benutzern}
 \begin{center}
-	\begin{tabularx} {\textwidth} { |X|X|X| }
+	\begin{tabularx} {\textwidth} { | B | B | B | }
 		\hline
 		\rowcolor{black}
 		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
 		\color{white} \textbf{Contra} \\
 		\hline
-		Audio-Aufnahmen mit dem Mikrofon und Wiedergabe über die Kopfhörer des Gerätes & - Kann über jegliche Distanzen verwendet werden & - Das Gerät muss ein Mikrofon sowie ein Lautsprecher besitzen \\
+		\vspace{1pt}
+		Audio-Aufnahmen mit dem Mikrofon und Wiedergabe über die Kopfhörer des Gerätes & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Kann über jegliche Distanzen verwendet werden
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Das Gerät muss ein Mikrofon sowie ein Lautsprecher besitzen
+		\end{itemize} \\
 		\hline
-		Direkte Kommunikation mit dem Gegenüber & - Benötigt keine technische Implementation & - Beide Benutzer müssen sich im selben Raum befinden \\
+		\vspace{1pt}
+		Direkte Kommunikation mit dem Gegenüber & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Benötigt keine technische Implementation
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Beide Benutzer müssen sich im selben Raum befinden
+		\end{itemize} \\
 		\hline
-		Kommunikation anhand der Körpersprache - Gesten und Gaze & - Einfach und verständlich & - Eingeschränkte Kommunikation \\
+		\vspace{1pt}
+		Kommunikation anhand der Körpersprache - Gesten und Gaze & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Einfach und verständlich
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Eingeschränkte Kommunikation
+		\end{itemize} \\
 		\hline	
 	\end{tabularx}
 \end{center}
@@ -67,17 +116,38 @@ Da die Applikation auch verteilt über mehrere Standorte funktionieren soll, mus
 \subsection{Avatar-Repräsentation in der virtuellen Umgebung}
 Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden folgende Varianten für eine Avatar-Repräsentation gefunden:
 \begin{center}
-	\begin{tabularx} {\textwidth} { |X|X|X| }
+	\begin{tabularx} {\textwidth} { | B | B | B | }
 		\hline
 		\rowcolor{black}
 		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
 		\color{white} \textbf{Contra} \\
 		\hline
-		Kopf und Hände der Benutzer werden in der virtuellen Umgebung abgebildet & - Gesten und Gaze können dargestellt werden & - Den Kopf und die Hände ohne Körper zu sehen kann sehr unnatürlich wirken \\
+		\vspace{1pt}
+		Kopf und Hände der Benutzer werden in der virtuellen Umgebung abgebildet & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Gesten und Gaze können dargestellt werden
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Den Kopf und die Hände ohne Körper zu sehen kann sehr unnatürlich wirken
+		\end{itemize} \\
 		\hline
-		Einfacher Avatar welcher den Oberkörper abbildet & - Funktioniert ohne zusätzliche Detektoren & - Versperrt dem andern Benutzer möglicherweise die Sicht auf Teile von relevanten Objekten \\
+		\vspace{1pt}
+		Einfacher Avatar welcher den Oberkörper abbildet & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Funktioniert ohne zusätzliche Detektoren
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Versperrt dem andern Benutzer möglicherweise die Sicht auf Teile von relevanten Objekten
+		\end{itemize} \\
 		\hline
-		Ganzkörper Avatar & - Ganzkörper Repräsentation des Gegenübers, erscheint daher natürlicher & - Schwer umzusetzen bezüglich des Trackings, da zusätzliche Detektoren verwendet werden müssen. Falls diese nicht richtig funktionieren erscheint der Avatar dem Gegenüber unnatürlich \\
+		\vspace{1pt}
+		Ganzkörper Avatar & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Ganzkörper Repräsentation des Gegenübers, erscheint daher natürlicher
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Schwer umzusetzen bezüglich des Trackings, da zusätzliche Detektoren verwendet werden müssen. Falls diese nicht richtig funktionieren erscheint der Avatar dem Gegenüber unnatürlich
+		\end{itemize} \\
 		\hline	
 	\end{tabularx}
 \end{center}
@@ -91,21 +161,58 @@ Für diesen Typ Applikation ist es nicht notwendig einen Ganzkörper Avatar zu v
 Im Bereich der Gleichzeitigen Interaktion am selben Objekt gibt es sehr viele Varianten, über welche Forschungen und Paper veröffentlicht worden sind (siehe Kapitel \ref{ch:collaborative_user_interaction}). Anhand dieser wurde die nachfolgende Tabelle erstellt:
 
 \begin{center}
-	\begin{tabularx} {\textwidth} { |X|X|X| }
+	\begin{tabularx} {\textwidth} { | B | B | B | }
 		\hline
 		\rowcolor{black}
 		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
 		\color{white} \textbf{Contra} \\
 		\hline
-		Separierung der Freiheitsgrade – Ein Nutzer steuert die Position, ein anderer die Rotation des Objektes &  & - Umständlich für eine Engineering Applikation - Behindert die Zusammenarbeit - Maximal zwei Benutzer\\
+		\vspace{1pt}
+		Separierung der Freiheitsgrade – Ein Nutzer steuert die Position, ein anderer die Rotation des Objektes &  &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Umständlich für eine Engineering Applikation
+			\item Behindert die Zusammenarbeit
+			\item Maximal zwei Benutzer
+		\end{itemize} \\
 		\hline
-		Berechnung des Mittelwerts aller Inputs der Nutzer & - Gleichzeitige Manipulation & - Das Manipulierte Objekt verhält sich nicht natürlich und zerstört so die Immersion \\
+		\vspace{1pt}
+		Berechnung des Mittelwerts aller Inputs der Nutzer & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Gleichzeitige Manipulation
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Das Manipulierte Objekt verhält sich nicht natürlich und zerstört so die Immersion
+		\end{itemize} \\
 		\hline
-		Abstrahierte Objekte in der realen Welt & - Natürliches Verhalten - Natürliches Feedback bei der Manipulation & - Benutzer müssen sich im selben Raum befinden - Objekt und Hände müssen getracked werden \\
+		\vspace{1pt}
+		Abstrahierte Objekte in der realen Welt & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Natürliches Verhalten
+			\item Natürliches Feedback bei der Manipulation
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Benutzer müssen sich im selben Raum befinden
+			\item Objekt und Hände müssen getracked werden
+		\end{itemize} \\
 		\hline
-		Zauberstab – Nur der Benutzer mit dem Zauberstab kann das Objekt manipulieren & - Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert & - Nur ein Benutzer kann die Umgebung bearbeiten \\
+		\vspace{1pt}
+		Zauberstab – Nur der Benutzer mit dem Zauberstab kann das Objekt manipulieren &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert
+		\end{itemize} &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Nur ein Benutzer kann die Umgebung bearbeiten
+		\end{itemize} \\
 		\hline	
-		«First come, First grab» Der Benutzer welcher eine Interaktion als erstes beginnt hat so lange die Macht über das Objekt bis er dieses wieder loslässt. & - Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert & - Nur ein Benutzer kann das Objekt bearbeiten - Andere Benutzer müssen sehen, ob sie das Objekt aktuell manipulieren können oder nicht \\
+		\vspace{1pt}
+		«First come, First grab» Der Benutzer welcher eine Interaktion als erstes beginnt hat so lange die Macht über das Objekt bis er dieses wieder loslässt. & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert
+		\end{itemize} &
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Nur ein Benutzer kann das Objekt bearbeiten
+			\item Andere Benutzer müssen sehen, ob sie das Objekt aktuell manipulieren können oder nicht
+		\end{itemize} \\
 		\hline	
 	\end{tabularx}
 \end{center}
