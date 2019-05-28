@@ -5,6 +5,7 @@
 Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen die folgenden Features in der Umsetzung geplant:
 
 \subsection{Highlight}
+\label{ch:highlight}
 Um dem Benutzer zu zeigen, mit welchem Bauteil er interagieren kann, soll das Bauteil, in welchem sich seine Hand aktuell befindet, markiert werden. Dabei soll die Markierung für den Benutzer gut sichtbar sein, nicht aber die Sicht auf das Bauteil selbst versperren. \\
 Im SteamVR-Asset befindet sich eine Beispiel Szene (Interactions\_Example), um die Handhabung mit dem Asset besser kennen zu lernen. In dieser Szene werden Objekte mit einer gelben Umrandung versehen, zu sehen in Abbildung \ref{fig:steamvr_highlight}, sobald sich ein Controller des Benutzers im Objekt befindet.
 
@@ -16,10 +17,11 @@ Im SteamVR-Asset befindet sich eine Beispiel Szene (Interactions\_Example), um d
 \end{figure}
 	
 \subsection{Snapping}
-Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwierig sein. Um dem entgegenzuwirken sollen Bauteile, welche sich in der Nähe ihres vorgesehenen Ortes befinden, beim loslassen automatisch an ihre richtige Position bewegt werden. Um dem Benutzer mitzuteilen, dass das Bauteil an eine Position "gesnappt" werden kann, soll die Silhouette des Bauteils am vorgesehen Ort erscheinen. 
+Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwierig sein. Um dem entgegenzuwirken sollen Bauteile, welche sich in der Nähe ihres vorgesehenen Ortes befinden, beim loslassen automatisch an ihre richtige Position bewegt werden. Um dem Benutzer mitzuteilen, dass das Bauteil an eine Position "gesnappt" werden kann, soll die Silhouette des Bauteils am vorgesehen Ort erscheinen. Um die Silhouette erscheinen zu lassen, könnte die gelbe Umrandung verwendet werden, welche im Kapitel \ref{ch:highlight} bereits erwähnt wurde. 
 	
 \subsection{Kollision}
-Beim Bewegen der Bauteile sollten diese an anderen statischen Bauteilen in der virtuellen Umgebung abprallen, um der Realität so nahe wie möglich zu kommen. 
+Beim Bewegen der Bauteile sollten diese mit anderen Bauteilen, welche sich in der virtuellen Umgebung befinden, kollidieren. Da alle Bauteile aber nur virtuell verfügbar sind und die Hand in der realen Welt nicht an etwas abprallen kann, muss dies in der virtuellen Realität simuliert werde. \\
+Um dies zu Realisieren müssen beide Bauteile einen Collider besitzen. Sobald ein Kollisions-Event gesendet wird, wird das Bauteil von der Hand des Spielers losgelöst. Die Physik-Engine von Unity berechnet dann welche Auswirkungen die Kollision auf das Bauteil hat.
 	
 \subsection{Feedback beim Zusammenbau / Manipulation der Objekte}
 Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem Benutzer eine Art Feedback gegeben werden, sobald zwei Bauteile kollidieren. Dies soll dem Benutzer auch beim Zusammenbauen der Objekte behilflich sein. In der Tabelle \ref{tbl:varianten_zusammenbau} sind drei Varianten aufgelistet, welche dieses Problem lösen könnten. Anhand eines Nutzertests soll evaluiert werden, welcher dieser Varianten sich am besten für dieses Problem eignet.
@@ -72,47 +74,6 @@ Der Multi-User Prototyp soll auf dem Single-User Prototyp aufbauen und alle Feat
 
 Anhand der Erkenntnissen aus den Recherchen, sind die folgenden Features in der Umsetzung geplant:
 
-\subsection{Kommunikation zwischen den Benutzern}
-\begin{center}
-	\begin{tabularx} {\textwidth} { | B | B | B | }
-		\hline
-		\rowcolor{black}
-		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
-		\color{white} \textbf{Contra} \\
-		\hline
-		\vspace{1pt}
-		Audio-Aufnahmen mit dem Mikrofon und Wiedergabe über die Kopfhörer des Gerätes & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Kann über jegliche Distanzen verwendet werden
-		\end{itemize} & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Das Gerät muss ein Mikrofon sowie ein Lautsprecher besitzen
-		\end{itemize} \\
-		\hline
-		\vspace{1pt}
-		Direkte Kommunikation mit dem Gegenüber & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Benötigt keine technische Implementation
-		\end{itemize} & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Beide Benutzer müssen sich im selben Raum befinden
-		\end{itemize} \\
-		\hline
-		\vspace{1pt}
-		Kommunikation anhand der Körpersprache - Gesten und Gaze & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Einfach und verständlich
-		\end{itemize} & 
-		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Eingeschränkte Kommunikation
-		\end{itemize} \\
-		\hline	
-	\end{tabularx}
-\end{center}
-\captionof{table}{Varianten für die Kommunikation zwischen den Benutzern}\label{tbl:varianten_kommunikation}
-
-Da die Applikation auch verteilt über mehrere Standorte funktionieren soll, muss entweder Variante eins oder drei aus der Tabelle \ref{tbl:varianten_kommunikation} umgesetzt werden. Um die Kommunikation zwischen den Benutzern so verständlich wie möglich zu machen werden die Varianten eins und drei in Kombination miteinander implementiert.
-
 \subsection{Avatar-Repräsentation in der virtuellen Umgebung}
 Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden folgende Varianten für eine Avatar-Repräsentation gefunden:
 \begin{center}
@@ -156,6 +117,52 @@ Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden fol
 \bigskip
 Für diesen Typ Applikation ist es nicht notwendig einen Ganzkörper Avatar zu verwenden. Dieser würde nur weitere Detektoren benötigen und bringt keinen Mehrwert. Die Gesten können auch mit einem einfachen Avatar dem Gegenüber gezeigt werden. \\
 \noindent Ein einfacher Avatar bestehend aus Kopf, Oberkörper und den beiden Händen kann ohne zusätzlichen Detektoren umgesetzt werden. Dabei sehen die anderen Benutzer zusätzlich die Orientierung der anderen Benutzern, was für die Zusammenarbeit von Vorteil sein kann. Dementsprechend wird im Projekt ein Avatar mit einem Oberkörper verwendet.
+
+\subsection{Kommunikation zwischen den Benutzern}
+\label{ch:kommunikation_zwischen_benutzern}
+
+\begin{center}
+	\begin{tabularx} {\textwidth} { | B | B | B | }
+		\hline
+		\rowcolor{black}
+		\color{white} \textbf{Variante} & \color{white} \textbf{Pro} & 
+		\color{white} \textbf{Contra} \\
+		\hline
+		\vspace{1pt}
+		Audio-Aufnahmen mit dem Mikrofon und Wiedergabe über die Kopfhörer des Gerätes & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Kann über jegliche Distanzen verwendet werden
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Das Gerät muss ein Mikrofon sowie ein Lautsprecher besitzen
+		\end{itemize} \\
+		\hline
+		\vspace{1pt}
+		Direkte Kommunikation mit dem Gegenüber & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Benötigt keine technische Implementation
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Beide Benutzer müssen sich im selben Raum befinden
+		\end{itemize} \\
+		\hline
+		\vspace{1pt}
+		Kommunikation anhand der Körpersprache - Gesten und Gaze & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Einfach und verständlich
+		\end{itemize} & 
+		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
+			\item Eingeschränkte Kommunikation
+		\end{itemize} \\
+		\hline	
+	\end{tabularx}
+\end{center}
+\captionof{table}{Varianten für die Kommunikation zwischen den Benutzern}\label{tbl:varianten_kommunikation}
+
+\bigskip
+Da die Applikation auch verteilt über mehrere Standorte funktionieren soll, muss entweder Variante eins oder drei aus der Tabelle \ref{tbl:varianten_kommunikation} umgesetzt werden.  \\
+Da die HTC Hive ein Mikrophon sowie Kopfhörer integriert hat, kann die erste Variante ohne zusätzliche Hardware umgesetzt werden. Um die Kommunikation zwischen den Benutzern so verständlich wie möglich zu machen wird zusätzlich zu der ersten Variante noch die dritte Variante umgesetzt, welche dank dem geplanten Avatar, beschrieben in Kapitel \ref{ch:kommunikation_zwischen_benutzern}, implementiert werden kann.
+
 
 \subsection{Gleichzeitige Interaktion am selben Objekt}
 Im Bereich der Gleichzeitigen Interaktion am selben Objekt gibt es sehr viele Varianten, über welche Forschungen und Paper veröffentlicht worden sind (siehe Kapitel \ref{ch:collaborative_user_interaction}). Anhand dieser wurde die nachfolgende Tabelle erstellt:
@@ -221,7 +228,7 @@ Im Bereich der Gleichzeitigen Interaktion am selben Objekt gibt es sehr viele Va
 \bigskip
 Die erste Variante macht in der umzusetzende Applikation die Zusammenarbeit umständlicher als es sein muss. Da ein Objekt oftmals nicht nur die Position ändern soll sondern auch die Rotation müssten bei den meisten Interaktionen mehrere Benutzer beteiligt sein. \\
 Die Variante bei welcher der Mittelwert aller Inputs genommen wird, wird ebenfalls nicht umgesetzt, da sich die Bewegung des Objektes für alle beteiligten Benutzer unnatürlich anfühlen würde. \\
-Abstrahierte Objekte in der realen Welt würden den Benutzern das natürlichste Verhalten geben, kann aber nicht umgesetzt werden, da die Applikation auch verteilt funktionieren soll und sich die Benutzer für diese Varianten im selben Raum befinden müssten. \\
+Die Variante mit den abstrahierten Objekte in der realen Welt würden den Benutzern das natürlichste Verhalten geben, kann aber nicht umgesetzt werden, da die Applikation auch verteilt funktionieren soll und sich die Benutzer für diese Variante im selben Raum befinden müssten. \\
 Dementsprechend werden die letzten beiden Varianten implementiert und anhand von Nutzertests evaluiert, welche Variante sich für diese Applikation besser eigenen würde.
 
 \subsection{Architektur}
