@@ -4,7 +4,15 @@
 \section{Realisierung}
 
 \subsection{SteamVR Plugin}
-Für die Anbindung der VR-Brille und der beiden Controller wurde das Unity Plugin SteamVR verwendet. Das SteamVR Plugin beinhaltet verschiedene vorgefertigte Objekte, auch Prefabs genannt, welche dem Programmierer den Einstieg und die Arbeit mit VR in Unity erleichtern. Eines dieser Prefabs namens \grqq Player\grqq{} ist dafür da, die VR-Brille mitsamt den beiden Controllern in Unity abzubilden, so dass diese ohne weiteres verwendet werden können.
+Für die Anbindung der VR-Brille und der beiden Controller wurde das Unity Plugin SteamVR verwendet. (\cite{noauthor_steamvr_2019}) Das SteamVR Plugin beinhaltet verschiedene vorgefertigte Objekte, auch Prefabs genannt, welche dem Programmierer den Einstieg und die Arbeit mit VR in Unity erleichtern. Eines dieser Prefabs namens \grqq Player\grqq{} ist dafür da, die VR-Brille mitsamt den beiden Controllern in Unity abzubilden, so dass diese ohne weiteres verwendet werden können. 
+Das verwendete \grqq Player\grqq-Prefab beinhaltet die folgenden Punkte, um welche sich der Programmiere nicht mehr kümmern muss:
+
+\begin{itemize} [itemsep=1pt,topsep=0pt]
+	\item Regelt die Inputs der Controller und generiert daraus Events, auf welche der Programmierer sich abonnieren kann
+	\item Handhabt die Kamera
+	\item Zeichnet die Grenzen der virtuellen Umgebung, in welcher der Spieler sich sicher bewegen kann, ohne in der realen Welt in ein anderes Objekt zu laufen
+\end{itemize}
+ 
 
 \subsection{Highlight}
 \label{ch:highlight_realisierung}
@@ -22,7 +30,7 @@ Dieses Event wird von der Applikation abgefangen und löst das Highlight des kol
 \end{figure}
 
 \subsection{Snapping}
-Zwischen den Bauteilen, bei welchen das Snapping stattfinden soll, wurden Trigger angebracht, welche genau aufeinander passen.(Abbildung \ref{fig:trigger_between_objects}) Sobald sich diese Trigger berühren wird ein Event ausgelöst, welches das Bauteil in der Hand des Benutzers als Silhouette am vorgesehenen Ort zeichnet. \\
+Zwischen den Bauteilen, bei welchen das Snapping stattfinden soll, wurden Trigger angebracht, welche genau aufeinander passen (Abbildung \ref{fig:trigger_between_objects}). Sobald sich diese Trigger berühren wird ein Event ausgelöst, welches das Bauteil in der Hand des Benutzers als Silhouette am vorgesehenen Ort zeichnet (Abbildung \ref{fig:snapping}). \\
 Dafür wird eine Kopie des Bauteils mitsamt dem Trigger erstellt, so positioniert, dass die beiden Trigger übereinstimmen und anschliessend das Material durch den Highlight-Shader ersetzt (beschrieben in Kapitel \ref{ch:highlight_realisierung}).
 
 \begin{figure}[h!]
@@ -56,14 +64,26 @@ Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welche
 \end{figure}
 
 \subsection{Baugruppen}
-Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere Bauteile von einem Ort auseinanderzunehmen nur um diese an einem anderen Ort wieder zusammenzubauen. \\
-Um dies im Projekt umzusetzen hat jedes Bauteil ein List von Kindern angehängt, welche besagt, welche Bauteile mit dem aktuellen Bauteil mitbewegt werden soll. Dies resultiert darin, dass es bei jeder Maschine ein Bauteil gibt, an welchem alle anderen Bauteile direkt oder indirekt über andere Bauteile befestigt sind.
+Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere Bauteile miteinander zu transportieren. Alle Bauteile mussten an einem Ort auseinandergenommen werden nur um diese an einem anderen Ort wieder zusammenzubauen. Um dies zu erleichtern wurde jedem Bauteil eine List von Kindern angehängt, welche besagt, welche Bauteile mit dem aktuellen Bauteil mitbewegt werden sollen. Dies resultiert darin, dass es bei jeder Maschine ein Bauteil gibt, an welchem alle anderen Bauteile direkt oder indirekt über andere Bauteile befestigt sind. \\
+
+\noindent Um dem Benutzer mitteilen zu können, in welcher Situation er welche Bauteile zusammen bewegen kann, wurde das Highlight, beschrieben in Kapitel \ref{ch:highlight_realisierung}, wie folgt angepasst. Für jedes Kind des Bauteils wurde überprüft, ob es zum aktuellen Zeitpunkt verbunden ist und falls dies der Fall ist, wird auch von diesem Bauteile eine Kopie erstellt und der Shader für das Highlight hinzugefügt. Somit werden alle Bauteile, welche miteinander bewegt werden können, wie in Abbildung \ref{fig:highlight_baugruppe} ersichtlich, mit einem Highlight versehen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Baugruppe_Highlight.PNG}
+	\caption{Highlight einer Baugruppe}
+	\label{fig:highlight_baugruppe}
+\end{figure}
 
 \subsection{Feedback beim Zusammembau / Manipulation der Objekte}
 \label{ch:feedback_zusammenbau_manipulation}
 
+
+
+
+
 \section{Evaluation}
-Nach Abschluss der Realisierungsphase des Single-User Prototypen wurde ein Nutzerevaluation durchgeführt um den Prototypen zu evaluieren und um entscheiden zu können, welcher der beiden beschrieben Varianten in Kapitel \textcolor{red}{???} sich für diese Applikation besser eignet. \\
+Nach Abschluss der Realisierungsphase des Single-User Prototypen wurde ein Nutzerevaluation durchgeführt um den Prototypen zu evaluieren und um entscheiden zu können, welcher der beiden beschrieben Varianten in Kapitel \ref{ch:feedback_zusammenbau_manipulation} sich für diese Applikation besser eignet. \\
 
 \noindent Insgesamt haben sechs Teilnehmer an der Nutzerevaluation teilgenommen. Das Alter der Teilnehmer lag zwischen 20-30 Jahren. Alle Teilnehmer hatten bereits Erfahrungen mit Virtual Reality. \\
 
