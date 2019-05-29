@@ -78,9 +78,35 @@ Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere 
 \subsection{Feedback beim Zusammembau / Manipulation der Objekte}
 \label{ch:feedback_zusammenbau_manipulation}
 
+Da drei verschiedene Varianten, beschrieben in Kapitel \ref{ch:feedback_zusammenbau_konzepte}, implementiert wurden, wurde für jede Variante ein eigener Prototyp mit einer eigenen Maschine erstellt. \\
 
+\noindent Die Variante, bei welcher dem Benutzer ein visuelles Feedback gegeben wird, wurde wie folgt implementiert. Bei einer Kollision zwischen zwei Bauteilen, wird das Bauteil in der Hand des Benutzers, wie in Abbildung \ref{fig:kollision_variante_1} zu sehen, rot eingefärbt. Sobald die Kollision endet, wird die Farbe des Bauteils wiederhergestellt.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Kollision_Variante1.PNG}
+	\caption{Visuelles Feedback bei einer Kollision}
+	\label{fig:kollision_variante_1}
+\end{figure}
 
+\bigskip
+Für die Umsetzung der zweiten Variante, bei welcher die Freiheitsgrade des Benutzers eingeschränkt werden, wurde die Ausrichtung des Triggers verwendet, welcher für das Snapping gebraucht wird. Sobald sich das Bauteil im Bereich des automatischen Snappings befindet, wird das Bauteil in der Hand des Benutzers anhand des Triggers ausgerichtet. Zur gleichen Zeit wird zwischen den beiden Bauteilen ein Joint platziert. Ein Joint ist eine Verbindung zwischen zwei Bauteilen und hat je nach Art des Joints unterschiedliche Eigenschaften. Im Falle dieser Applikation wird ein Joint verwendet, bei welchem zwei Achsen sowie die Rotation in allen Achsen fixiert werden. Somit lässt sich das Bauteil, wie in Abbildung \ref{fig:einschraenkung_freiheitsgrade} zu sehen, nur noch auf einer Achse bewegen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Einschraenkung_Freiheitsgrade.PNG}
+	\caption{Einzig bewegbare Achse durch die Einschränkung der Freiheitsgrade}
+	\label{fig:einschraenkung_freiheitsgrade}
+\end{figure}
+
+Die dritte Variante, mit dem Vibrations Feedback, konnte mithilfe des SteamVR Assets implementiert werden. Um auf die Vibration des Controllers zugreifen zu können, muss lediglich bekannt sein, auf welchem Controller die Vibration ausgeführt werden soll. Die Übergabeparameter der Funktion des SteamVR Assets erlauben dann die Vibration wie folgt anzupassen:
+
+\begin{itemize} [itemsep=1pt,topsep=0pt]
+	\item Startzeit der Vibration in Sekunden ab dem aktuellen Zeitpunkt
+	\item Dauer der Vibration
+	\item Frequenz der Vibration in Hertz
+	\item Die Stärke der Vibration
+\end{itemize}
 
 \section{Evaluation}
 Nach Abschluss der Realisierungsphase des Single-User Prototypen wurde ein Nutzerevaluation durchgeführt um den Prototypen zu evaluieren und um entscheiden zu können, welcher der beiden beschrieben Varianten in Kapitel \ref{ch:feedback_zusammenbau_manipulation} sich für diese Applikation besser eignet. \\
