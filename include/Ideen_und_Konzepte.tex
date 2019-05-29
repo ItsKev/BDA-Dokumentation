@@ -2,7 +2,7 @@
 \label{ch:Ideen_und_Konzepte}
 
 \section{Single-User Prototyp}
-Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen die folgenden Features in der Umsetzung geplant:
+Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen, sind die folgenden Features in der Umsetzung geplant:
 
 \subsection{Highlight}
 \label{ch:highlight}
@@ -20,6 +20,7 @@ Im SteamVR-Asset befindet sich eine Beispiel Szene (Interactions\_Example), um d
 Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwierig sein. Um dem entgegenzuwirken sollen Bauteile, welche sich in der Nähe ihres vorgesehenen Ortes befinden, beim loslassen automatisch an ihre richtige Position bewegt werden. Um dem Benutzer mitzuteilen, dass das Bauteil an eine Position "gesnappt" werden kann, soll die Silhouette des Bauteils am vorgesehen Ort erscheinen. Um die Silhouette erscheinen zu lassen, könnte die gelbe Umrandung verwendet werden, welche im Kapitel \ref{ch:highlight} bereits erwähnt wurde. 
 	
 \subsection{Kollision}
+\label{ch:kollision}
 Beim Bewegen der Bauteile sollten diese mit anderen Bauteilen, welche sich in der virtuellen Umgebung befinden, kollidieren. Da alle Bauteile aber nur virtuell verfügbar sind und die Hand in der realen Welt nicht an etwas abprallen kann, muss dies in der virtuellen Realität simuliert werde. \\
 Um dies zu Realisieren müssen beide Bauteile einen Collider besitzen. Sobald ein Kollisions-Event gesendet wird, wird das Bauteil von der Hand des Spielers losgelöst. Die Physik-Engine von Unity berechnet dann welche Auswirkungen die Kollision auf das Bauteil hat.
 	

@@ -3,9 +3,12 @@
 
 \section{Realisierung}
 
+\subsection{SteamVR Plugin}
+Für die Anbindung der VR-Brille und der beiden Controller wurde das Unity Plugin SteamVR verwendet. Das SteamVR Plugin beinhaltet verschiedene vorgefertigte Objekte, auch Prefabs genannt, welche dem Programmierer den Einstieg und die Arbeit mit VR in Unity erleichtern. Eines dieser Prefabs namens \grqq Player\grqq{} ist dafür da, die VR-Brille mitsamt den beiden Controllern in Unity abzubilden, so dass diese ohne weiteres verwendet werden können.
+
 \subsection{Highlight}
 \label{ch:highlight_realisierung}
-Dank der Beispiel Szene im Steam-VR Asset, beschrieben im Kapitel \ref{ch:highlight}, war sehr schnell klar, wie das Highlight der Objekte bei im Asset selbst gemacht wird. \\
+Dank der Beispiel Szene im SteamVR Asset, beschrieben im Kapitel \ref{ch:highlight}, war sehr schnell klar, wie das Highlight der Objekte bei im Asset selbst gemacht wird. \\
 Um die Silhouette des Objektes gelb umrahmen zu können, wird das Material aller MeshRenderer (in Unity zuständig für die visuelle Darstellung eines GameObjects) des Objektes ersetzt, mit einem Material, auf welchem sich ein spezifischer Shader befindet. Dieser Shader zeichnet nur die Aussenlinie des Meshes und macht alles innerhalb dieser Linie transparent. Um die originale Farbe des Objektes nicht zu verlieren, wird das Objekt erst kopiert und anschliessend das Material auf dem kopierten Objekt geändert. \\
 
 \noindent Das Highlight in der Single-User Applikation wurde genau wie im vorherigen Abschnitt beschrieben implementiert. An dein beiden Controllern des Benutzers wurde jeweils ein Collider hinzugefügt, welcher aber keine Kollision verursacht sondern lediglich ein Event feuert, sobald er mit einem anderen Collider in Berührung kommt. Diese Art der Collider wird auch Trigger genannt. \\
@@ -40,9 +43,10 @@ Dafür wird eine Kopie des Bauteils mitsamt dem Trigger erstellt, so positionier
 \end{figure}
 
 \subsection{Kollision}
-Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den Bauteilen ein Rigidbody angehängt werden. Dieser ist für die Physik-Berechnungen zuständig und kann konstante Beschleunigungen oder eine konstante Geschwindigkeit auf das Bauteil geben.
+Falls das Bauteil, wie in Kapitel \ref{ch:kollision} beschrieben, nur von der Hand losgelöst wird, kann es nicht ohne weiteres wieder an die Hand des Benutzers gemacht werden beim verlassen der Kollision. Auch andere Ansätze funktionierten nicht direkt so wie gedacht. \\
 
-% TODO: Bild referenzieren
+\noindent Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den Bauteilen ein Rigidbody angehängt werden. Dieser ist für die Physik-Berechnungen zuständig und kann konstante Beschleunigungen oder eine konstante Geschwindigkeit auf das Bauteil geben. \\
+Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welches sich aktuell an der Hand des Benutzers befindet, mitgeteilt, dass es nicht mehr Kinematisch sein soll. Damit wird bewirkt, dass dieses Bauteil sich mithilfe der Physik bewegen kann (Die Gravitation ist deaktiviert). Da das Bauteil so aber langsam in eine Richtung gleiten würde muss ihm eine konstante Geschwindigkeit zum Controller hin gegeben werden. So versucht sich das Bauteil in die Richtung des Controllers zu bewegen, kollidiert aber mit anderen Bauteilen, welche sich im Weg befinden. Dies ist in der Abbildung \ref{fig:collision} dargestellt.
 
 \begin{figure}[h!]
 	\centering
@@ -52,6 +56,11 @@ Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den 
 \end{figure}
 
 \subsection{Baugruppen}
+Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere Bauteile von einem Ort auseinanderzunehmen nur um diese an einem anderen Ort wieder zusammenzubauen. \\
+Um dies im Projekt umzusetzen hat jedes Bauteil ein List von Kindern angehängt, welche besagt, welche Bauteile mit dem aktuellen Bauteil mitbewegt werden soll. Dies resultiert darin, dass es bei jeder Maschine ein Bauteil gibt, an welchem alle anderen Bauteile direkt oder indirekt über andere Bauteile befestigt sind.
+
+\subsection{Feedback beim Zusammembau / Manipulation der Objekte}
+\label{ch:feedback_zusammenbau_manipulation}
 
 \section{Evaluation}
 Nach Abschluss der Realisierungsphase des Single-User Prototypen wurde ein Nutzerevaluation durchgeführt um den Prototypen zu evaluieren und um entscheiden zu können, welcher der beiden beschrieben Varianten in Kapitel \textcolor{red}{???} sich für diese Applikation besser eignet. \\
