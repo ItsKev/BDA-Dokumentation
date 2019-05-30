@@ -63,10 +63,74 @@ Für die Kommunikation zwischen den Benutzern wurde ebenfalls auf die Photon-Eng
 \noindent Um die Voice Applikation nutzen zu können, muss einem leeren GameObject in der Szene eine \grqq Photon Voice Network\grqq{} Komponente sowie ein \grqq Recorder\grqq{} hinzugefügt werden. Diese Komponenten sind ebenfalls aus einem Plugin der Photon-Engine namens Photon Voice (\cite{noauthor_photon_2019-1}). So wird der Sound über das Mikrophon des Benutzers aufgenommen. Für die Wiedergabe wurde dem Avatar zusätzlich eine \grqq Speaker\grqq{}-Komponente, welche ebenfalls aus dem Photon Voice Plugin stammt, hinzugefügt. Somit können die Benutzer miteinander über grosse Distanzen kommunizieren. 
 
 \subsection{Gleichzeitige Interaktion am selben Objekt}
+\label{ch:gleichzeitige_interaktion_realisierung}
 
+Durch die Erkenntnisse während Arbeit mit der Photon-Engine wurde bewusst, dass eine simultane Interaktion am selben Objekt nicht möglich ist, da immer nur ein Benutzer Besitzer eines Bauteils sein kann. Da nur der Besitzer das Bauteil verschieben kann, müssten andere Technologien verwendet werden. Im Kapitel \ref{ch:gleichzeitige_interaktion} wurde entschieden, die beiden Varianten «First come, First grab» und Zauberstab zu implementieren. Beide Varianten verlangen keine simultane Interaktion am selben Objekt und konnten daher umgesetzt werden. \\
 
+\noindent Die Variante «First come, First grab» funktioniert wie folgt. Alle Benutzer können Bauteile greifen und diese verschieben solange kein anderer das Bauteil aktuell am manipulieren ist. Der genaue Ablauf ist im nachfolgenden Pseudocode veranschaulicht.
+
+\begin{algorithm}
+	Der Benutzer versucht das Bauteil zu greifen\;
+	\eIf{Ist das Bauteil noch greifbar?} {
+		\textit{RequestOwnerShip()} aufrufen um Besitzer des Bauteils zu werden\;
+		Das Bauteil für anderen Benutzer sperren\;
+		Das Bauteil an die Hand des Benutzers anhängen\;
+		
+	}{
+		Dem Benutzer mitteilen, dass das Bauteil aktuell nicht greifbar ist\;	
+	}
+\end{algorithm}
+
+Für die zweite Variante würde dem Prototypen ein Zauberstab hinzugefügt, welcher ebenfalls greifbar und mit einer Photon View sowie einer Photon Transform View ausgestattet ist. Somit wird die Position wie auch die Rotation zwischen allen Benutzern synchronisiert. Nur derjenige Benutzer, welcher aktuell in Besitz des Zauberstabs ist, kann Bauteile manipulieren. Um den Zauberstab nicht immer in der Hand halten zu müssen, wird dieser beim greifen rechts bzw. links neben der Hand platziert und bewegt sich mit dieser mit, siehe Abbildung \ref{fig:magic_wand}. Möchte ein anderer Benutzer die virtuelle Umgebung manipulieren muss er den Zauberstab vom aktuellen Benutzer übernehmen, indem er den Zauberstab an der Hand des anderen Benutzers greift.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.25\linewidth]{img/MagicWand.PNG}
+	\caption{Zauberstab angehängt an der rechten Hand}
+	\label{fig:magic_wand}
+\end{figure} 
 
 \section{Evaluation}
+Nach Fertigstellung des Multi-User Prototypen wurde ebenfalls, wie schon nach dem ersten Prototypen, eine Nutzerstudie durchgeführt. Anhand dieser Nutzerstudie sollte evaluiert werden, welche der beschriebenen Varianten im Kapitel \ref{ch:gleichzeitige_interaktion_realisierung} sich besser für die Anwendung eignet.
+
+\subsection{Teilnehmer}
+An der zweiten Nutzerstudie haben 14 Nutzer teilgenommen. Viele Teilnehmer hatten noch keine Erfahrungen mit Virtual Reality.
+
+\subsection{Ablauf}
+Für diesen Nutzertest wurden immer zwei Teilnehmer gleichzeitig benötigt. Falls einer von beiden noch keine Erfahrungen mit Virtual Reality hatte, oder sein Partner noch nicht Verfügbar war, wurde ihnen das Bogenschiessen im Spiel \grqq The Lab\grqq{} gezeigt (\cite{noauthor_lab_2019}). Hier ging es darum, dass sich die Teilnehmer vor dem Benutzen der Multi-User Applikation mit Virtual Reality vertraut machten. \\
+
+\noindent Anschliessend war es die Aufgabe zusammen vier verschiedene Motoren zusammenzubauen. Zweimal mit der Variante «First come, First grab» und zweimal mit der Variante mit dem Zauberstab. \\
+Dafür hat immer einer der beiden Teilnehmer gesehen an welche Position das Bauteil muss (Abbildung \ref{fig:wohin}) und der andere hat gesehen, welches Bauteil an diese Stelle muss (Abbildung \ref{fig:welches}). Dies wechselte immer zwischen den Teilnehmer. So wurde die Zusammenarbeit forciert, dass nicht einer alles alleine machen konnte.
+
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}[b]{0.49\linewidth}
+		\centering
+		\includegraphics[keepaspectratio,width=0.9\linewidth]{img/Wohin.PNG}
+		\caption{Wohin muss das Bauteil?}
+		\label{fig:wohin}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.49\linewidth}
+		\centering
+		\includegraphics[keepaspectratio,width=0.9\linewidth]{img/Welches.PNG}
+		\caption{Welches Bauteil ist es?}
+		\label{fig:welches}
+	\end{minipage}
+\end{figure}
+
+\subsection{Auswertung}
+Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen gestellt:
+
+\begin{enumerate} [itemsep=1pt,topsep=0pt]
+	\item Wie gut funktionierte die Interaktion mit der anderen Person?
+	
+	\item Sehen Sie einen Mehrwert in der Applikation gegenüber traditionellen Methoden über ein Bauteil / eine Maschine zu diskutieren?
+	
+	\item Welche der beiden Varianten fanden Sie hilfreicher, um den Task auszuführen und wieso?
+	
+	\item Wenn Sie etwas an der Applikation ändern könnten, was wäre es?
+\end{enumerate}
 
 \section{Schlussfolgerung}
 
