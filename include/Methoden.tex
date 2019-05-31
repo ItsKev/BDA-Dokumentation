@@ -4,7 +4,7 @@
 \section{Vorgehensmodell}
 Als Vorgehensmodell wurde SoDa gewählt, da im Projekt über mehrere Iterationen zwei Prototypen weiterentwickelt werden sollen. Im ersten Teil des Projektes wird ein Single-User Prototyp entwickelt und im zweiten Teil ein Multi-User Prototyp, welcher auf dem ersten Prototypen und dessen Erkenntnissen aufbauen wird.
 
-\noindent Nach dem ersten sowie dem zweiten Teil des Projektes wird jeweils eine Nutzerevaluation durchgeführt, um die verschiedenen Varianten miteinander zu vergleichen und Rückmeldungen zum Prototypen selbst zu kriegen.
+\noindent Nach dem ersten sowie dem zweiten Teil des Projektes wird jeweils eine Nutzerevaluation durchgeführt, um die verschiedenen Varianten miteinander zu vergleichen und Rückmeldungen zum Prototypen selbst zu bekommen.
 
 \section{Rahmenplan}
 Das Projekt besitzt die folgenden Ereignisse:
@@ -15,11 +15,11 @@ Das Projekt besitzt die folgenden Ereignisse:
 		\color{white} \textbf{Ereignis} & \color{white} \textbf{Semesterwoche} & 
 		\color{white} \textbf{Termin} \\
 		\hline
-		\textbf{Initialisierung} & SW01-S03 & 18.02.19 - 08.03.19 \\
+		\textbf{Initialisierung} & SW01 - S03 & 18.02.19 - 08.03.19 \\
 		\hline
-		\textbf{Iterationen(Sprints)} & SW04-SW13 & 11.03.19 - 17.05.19 \\
+		\textbf{Iterationen(Sprints)} & SW04 - SW13 & 11.03.19 - 17.05.19 \\
 		\hline
-		\textbf{Zwischenpräsentation} & SW07-SW10 & 24.04.19 \\
+		\textbf{Zwischenpräsentation} & SW07 - SW10 & 24.04.19 \\
 		\hline
 		\textbf{Projektabschluss} & SW16 & 07.06.19 \\
 		\hline		
@@ -36,11 +36,11 @@ Die Iterationen werden in zwei Teile unterteilt. Die Sprints dauern jeweils zwei
 		\color{white} \textbf{Projektphase} & \color{white} \textbf{Semesterwoche} & 
 		\color{white} \textbf{Termin} \\
 		\hline
-		\textbf{Single-User (3 Sprints)} & SW04-S09 & 11.03.19 - 19.04.19 \\
+		\textbf{Single-User (3 Sprints)} & SW04 - S09 & 11.03.19 - 19.04.19 \\
 		\hline
 		\textbf{Nutzerevaluation Single-User} & SW10 & 22.04.19 - 26.04.19 \\
 		\hline
-		\textbf{Multi-User (2 Sprints)} & SW10-SW13 & 22.04.19 - 17.04.19\\
+		\textbf{Multi-User (2 Sprints)} & SW10 - SW13 & 22.04.19 - 17.04.19\\
 		\hline
 		\textbf{Nutzerevaluation Multi-User} & SW14 & 20.05.19 - 24.04.19 \\
 		\hline		
@@ -48,6 +48,7 @@ Die Iterationen werden in zwei Teile unterteilt. Die Sprints dauern jeweils zwei
 \end{center}
 \captionof{table}{Sprintplan}\label{tbl:sprintplan}
 
+\pagebreak
 \section{Meilensteine}
 Für das Projekt wurden zwei Meilensteine definiert welche in Tabelle \ref{tbl:meilensteine} ersichtlich sind.
 \begin{center}
@@ -118,6 +119,7 @@ Anhand der Aufgabenstellung und den Erkenntnissen aus der Recherche wurden folge
 \end{center}
 \captionof{table}{Multi-User Anforderungen}\label{tbl:multi_user_anforderungen}
 
+\pagebreak
 \section{Risikoanalyse}
 Eintrittswahrscheinlichkeit (EW)
 \begin{center}
@@ -154,33 +156,49 @@ Schadensausmass (SA)
 \end{center}
 \captionof{table}{Schadensausmass}\label{tbl:schadensausmass}
 
+\subsection{Mögliche Risiken}
 
-Zusammenstellung mögliche Risiken
 \begin{center}
-	\begin{tabularx}{\textwidth} { |l|l|B|l|l| }
+	\begin{tabularx}{\textwidth} { |l|B|B|l|l| }
 		\hline
 		\rowcolor{black}
 		\color{white} \textbf{id} & \color{white} \textbf{Risiko} & \color{white} \textbf{Beschreibung} & \color{white} \textbf{EW} & \color{white} \textbf{SA} \\
 		\hline
 		R1 & Netzwerk-Synchronisation Probleme & Die Synchronisierung der Bauteile über das Netzwerk ist zu langsam oder kann in VR nicht umgesetzt werden. & 2 & 2 \\
 		\hline
-		R2 & Hardware defekt & Während des Projektes kann ein Hardware defekt an einer der Virtual Reality Brillen auftreten. & 1 & 3 \\
+		R2 & Limitierter Testbereich & Da nur ein limitierter Testbereich zur Verfügung steht und sich dementsprechend beide Testpersonen im gleichen Tracking-Bereich aufhalten, kann es zu Kollisionen kommen. & 3 & 1 \\
 		\hline
-		R3 & Grosser Schaden & Test & 1 & 1 \\
+		R3 & Hardware defekt & Während des Projektes kann ein Hardware defekt an einer der Virtual Reality Brillen auftreten. & 1 & 3 \\
 		\hline
 	\end{tabularx}
 \end{center}
 \captionof{table}{Risiken vorher}\label{tbl:risiken_vorher}
 
-% TODO: Risiken fertig zusammenstellen
+\subsection{Risikoverminderung: Mögliche Massnahmen}
+Nachfolgend sind mögliche Massnahmen zur Verminderung der Risiken sowie deren Auswirkungen auf die Eintrittswahrscheinlichkeit (EW) und das Schadensausmass (SA) beschrieben.
 
+\begin{center}
+	\begin{tabularx}{\textwidth} { |l|B|B|l|l| }
+		\hline
+		\rowcolor{black}
+		\color{white} \textbf{id} & \color{white} \textbf{Risiko} & \color{white} \textbf{Massnahme} & \color{white} \textbf{EW} & \color{white} \textbf{SA} \\
+		\hline
+		R1 & Netzwerk-Synchronisation Probleme & Es gibt diverse Frameworks welche eine Echtzeit Synchronisation erlauben. (zB. \cite{noauthor_photon_2019}) Trotzdem könnte das Problem auch dann noch auftauchen. & 1 & 2 \\
+		\hline
+		R2 & Limitierter Testbereich & Solange die Positionen der beiden Testpersonen auf wenige Zentimeter genau übertragen wird und die Tracking-Bereiche bei beiden exakt die gleichen sind, sollten die Testpersonen nicht mehr miteinander kollidieren. (Solange sie darauf achten, wo sie hingehen)  & 1 & 1 \\
+		\hline
+		R3 & Hardware defekt & Da im Projekt mit SteamVR gearbeitet wird, kann jederzeit auf eine andere Virtual Reality Brille zurückgegriffen werden. & 1 & 1 \\
+		\hline
+	\end{tabularx}
+\end{center}
+\captionof{table}{Risiken nachher}\label{tbl:risiken_nachher}
 
 \section{Verwendete Hardware}
-Um die Prototypen entwickeln zu können wird die HTC Vive (Abbildung \ref{fig:htc_vive}) verwendet. (\cite{noauthor_vive_2019}) Umgesetzt wird die Programmierung der Applikationen mit der Game-Engine Unity und dem SteamVR Plugin, welches eine einfache Integrierung der Virtual Reality Brillen in Unity erlaubt. (\cite{noauthor_unity_2019}) SteamVR stellt diverse Prototypen und Beispielapplikationen zur Verfügung um dem Programmierer den Einstig so einfach wie möglich zu machen. (\cite{noauthor_steamvr_2019})\\
-Dank dem SteamVR Plugin ist es möglich, ohne grossen Aufwand, die verwendete VR-Brille gegen eine andere auszutauschen.
+Um die Prototypen entwickeln zu können wird die HTC Vive (Abbildung \ref{fig:htc_vive}) verwendet. (\cite{noauthor_vive_2019}) Umgesetzt wird die Programmierung der Applikationen mit der Game-Engine Unity und dem SteamVR Plugin, welches eine einfache Integrierung der Virtual Reality Brillen in Unity erlaubt. (\cite{noauthor_unity_2019}) SteamVR stellt diverse Prototypen und Beispielapplikationen zur Verfügung um dem Programmierer den Einstig so einfach wie möglich zu machen. (\cite{noauthor_steamvr_2019}) Dank dem SteamVR Plugin ist es möglich, ohne grossen Aufwand, die verwendete VR-Brille gegen eine andere auszutauschen.
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Vive_Pro.jpg}
+	\includegraphics[keepaspectratio,width=0.3\linewidth]{img/Vive_Pro.jpg}
 	\caption{HTC Vive}
 	\label{fig:htc_vive}
 \end{figure}
