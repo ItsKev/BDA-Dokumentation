@@ -3,7 +3,9 @@
 
 \section{Realisierung}
 
-\subsection{SteamVR Plugin}
+\subsection{SteamVR-Plugin}
+\label{ch:steamvr_plugin}
+
 Für die Anbindung der VR-Brille und der beiden Controller wurde das Unity Plugin SteamVR verwendet. (\cite{noauthor_steamvr_2019}) Das SteamVR Plugin beinhaltet verschiedene vorgefertigte Objekte, auch Prefabs genannt, welche dem Programmierer den Einstieg und die Arbeit mit VR in Unity erleichtern. Eines dieser Prefabs namens \grqq Player\grqq{} ist dafür da, die VR-Brille mitsamt den beiden Controllern in Unity abzubilden, so dass diese ohne weiteres verwendet werden können. 
 Das verwendete \grqq Player\grqq-Prefab beinhaltet die folgenden Punkte, um welche sich der Programmiere nicht mehr kümmern muss:
 
@@ -30,6 +32,7 @@ Dieses Event wird von der Applikation abgefangen und löst das Highlight des kol
 \end{figure}
 
 \subsection{Snapping}
+\label{ch:snapping}
 Zwischen den Bauteilen, bei welchen das Snapping stattfinden soll, wurden Trigger angebracht, welche genau aufeinander passen (Abbildung \ref{fig:trigger_between_objects}). Sobald sich diese Trigger berühren wird ein Event ausgelöst, welches das Bauteil in der Hand des Benutzers als Silhouette am vorgesehenen Ort zeichnet (Abbildung \ref{fig:snapping}). \\
 Dafür wird eine Kopie des Bauteils mitsamt dem Trigger erstellt, so positioniert, dass die beiden Trigger übereinstimmen und anschliessend das Material durch den Highlight-Shader ersetzt (beschrieben in Kapitel \ref{ch:highlight_realisierung}).
 
@@ -51,6 +54,7 @@ Dafür wird eine Kopie des Bauteils mitsamt dem Trigger erstellt, so positionier
 \end{figure}
 
 \subsection{Kollision}
+\label{ch:kollision_single_user}
 Falls das Bauteil, wie in Kapitel \ref{ch:kollision} beschrieben, nur von der Hand losgelöst wird, kann es nicht ohne weiteres wieder an die Hand des Benutzers gemacht werden beim verlassen der Kollision. Auch andere Ansätze funktionierten nicht direkt so wie gedacht. \\
 
 \noindent Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den Bauteilen ein Rigidbody angehängt werden. Dieser ist für die Physik-Berechnungen zuständig und kann konstante Beschleunigungen oder eine konstante Geschwindigkeit auf das Bauteil geben. \\
@@ -64,6 +68,7 @@ Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welche
 \end{figure}
 
 \subsection{Baugruppen}
+\label{ch:baugruppen}
 Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere Bauteile miteinander zu transportieren. Alle Bauteile mussten an einem Ort auseinandergenommen werden nur um diese an einem anderen Ort wieder zusammenzubauen. Um dies zu erleichtern wurde jedem Bauteil eine List von Kindern angehängt, welche besagt, welche Bauteile mit dem aktuellen Bauteil mitbewegt werden sollen. Dies resultiert darin, dass es bei jeder Maschine ein Bauteil gibt, an welchem alle anderen Bauteile direkt oder indirekt über andere Bauteile befestigt sind. \\
 
 \noindent Um dem Benutzer mitteilen zu können, in welcher Situation er welche Bauteile zusammen bewegen kann, wurde das Highlight, beschrieben in Kapitel \ref{ch:highlight_realisierung}, wie folgt angepasst. Für jedes Kind des Bauteils wurde überprüft, ob es zum aktuellen Zeitpunkt verbunden ist und falls dies der Fall ist, wird auch von diesem Bauteile eine Kopie erstellt und der Shader für das Highlight hinzugefügt. Somit werden alle Bauteile, welche miteinander bewegt werden können, wie in Abbildung \ref{fig:highlight_baugruppe} ersichtlich, mit einem Highlight versehen.
@@ -160,7 +165,31 @@ Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Frage
 	\centering
 	\includegraphics[keepaspectratio,width=0.75\linewidth]{img/ArchitekturT1.pdf}
 	\caption{Systemarchitektur des Single-User Prototypen}
-	\label{fig:Systemarchitektur_Single_User}
+	\label{fig:systemarchitektur_single_user}
 \end{figure}
 
+Die Systemarchitektur des Single-User Prototypen wurde sehr simple gehalten, wie in Abbildung \ref{fig:systemarchitektur_single_user} zu sehen ist. Als Basis dient die Game-Engine Unity und alle zur Verfügung gestellten Features. Das für die Virtual Reality Anbindung verwendete SteamVR Plugin kommuniziert mit Unity und stellt eine Schnittstelle für eigens geschrieben Scripts dar. Die Blender Modelle werden von Unity importiert und in ein nutzbares Format innerhalb von Unity konvertiert. \\
+Die erstellten Scripts und verwendeten Komponenten, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}, befinden sich auf den konvertieren Blender Modellen oder verwendeten SteamVR Komponenten. Die Scripts verwenden Funktionen des SteamVR-Plugins und von Unity selbst.
+
+
 \section{Klassendiagramm}
+\label{ch:klassendiagram_single_user}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.75\linewidth]{img/Klassendiagramm_T1.pdf}
+	\caption{Klassendiagramm des Single-User Prototypen}
+	\label{fig:klassendiagramm_single_user}
+\end{figure}
+
+Der \grqq Player\grqq{} ist eine Komponente, welche von SteamVR-Plugin genommen wurde, beschrieben in Kapitel \ref{ch:steamvr_plugin}. An dieser Komponente wurde lediglich der linken und rechten Hand ein Script \grqq AttachTo\grqq{} hinzugefügt. Dieses Script fängt die Inputs des Benutzers ab und teilt beim greifen eines Objektes dem \grqq Attachable\grqq{} Script mit, dass es nun gegriffen wurde. \\
+
+\noindent Die Maschine wurde in verschieden Teile unterteilt, jeder Teil der Maschine kann bewegt und auseinandergenommen werden. Die Funktionalität der Scripts wurde in folgenden Kapiteln beschrieben:
+
+\begin{itemize} [itemsep=1pt,topsep=0pt]	
+	\item Highlight: Zuständig für das Highlight der Bauteile, falls sich eine Hand des Benutzers in einem befindet sowie das Highlight des Snappings. Beides ist beschrieben im Kapitel \ref{ch:highlight_realisierung}.
+	
+	\item Snapping: Zuständig für das Snapping der Bauteile, beschrieben in Kapitel \ref{ch:snapping}.
+	
+	\item Attachable: Zuständig für das Kollidieren der Bauteile, beschrieben in Kapitel \ref{ch:kollision_single_user}, für die Baugruppen, beschrieben in Kapitel \ref{ch:baugruppen} und das Feedback beim Zusammenbau, beschrieben in Kapitel \ref{ch:feedback_zusammenbau_manipulation}.
+\end{itemize}
