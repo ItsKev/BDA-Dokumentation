@@ -57,7 +57,7 @@ Wie in Kapitel \ref{ch:avatar_repraesentation_realisierung} beschrieben, wurde f
 Der Benutzer selbst sieht von seinem eigenen Avatar nur die Hände mit den Controllern. Der Oberkörper sowie der Kopf sind für ihn unsichtbar, da sie sonst in der Quere des Sichtfelds sein würden. Um den Avatar mit den anderen Instanzen zu synchronisieren wurde ebenfalls, wie in Kapitel \ref{ch:multi_user} beschrieben, auf jede Komponente des Avatars eine Photon View hinzugefügt. Somit sehen die Benutzer sich untereinander und können mithilfe von Gesten miteinander Kommunizieren.
 
 \subsection{Kommunikation zwischen den Benutzern}
-
+\label{ch:kommunikation_zwischen_benutzern_realisierung}
 Für die Kommunikation zwischen den Benutzern wurde ebenfalls auf die Photon-Engine zurückgegriffen. Im Photon Dashboard, zu sehen in Abbildung \ref{fig:photon_dashboard}, wurde eine Voice Applikation erstellt und die erhaltene App ID konnte dann in Unity, zusätzlich zu der App ID für die Realtime-Applikation, eingeben werden. \\
 
 \noindent Um die Voice Applikation nutzen zu können, muss einem leeren GameObject in der Szene eine \grqq Photon Voice Network\grqq{} Komponente sowie ein \grqq Recorder\grqq{} hinzugefügt werden. Diese Komponenten sind ebenfalls aus einem Plugin der Photon-Engine namens Photon Voice (\cite{noauthor_photon_2019-1}). So wird der Sound über das Mikrophon des Benutzers aufgenommen. Für die Wiedergabe wurde dem Avatar zusätzlich eine \grqq Speaker\grqq{}-Komponente, welche ebenfalls aus dem Photon Voice Plugin stammt, hinzugefügt. Somit können die Benutzer miteinander über grosse Distanzen kommunizieren. 
@@ -135,5 +135,27 @@ Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen
 \section{Schlussfolgerung}
 
 \section{Systemarchitektur}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.75\linewidth]{img/ArchitekturT2.pdf}
+	\caption{Systemarchitektur des Multi-User Prototypen}
+	\label{fig:systemarchitektur_mutli_user}
+\end{figure}
+
+Die beiden Instanzen sind grundsätzlich genau gleich aufgebaut wie in der Single-User Applikation, beschrieben in Kapitel \ref{ch:systemarchitektur_single_user}. Um mit der Photon-Engine kommunizieren zu können musste zusätzlich noch das Photon-Engine Plugin sowie das Photon-Voice Plugin hinzugefügt werden. \\
+Die erste Instanz, welche sich mit der Photon-Engine verbindet, wird automatisch zur Master-Instanz. Nach dem Verbinden mit der Photon-Engine wird die Instanz mit einem Photon-Raum verbunden. Sobald sich nun zwei Instanzen im selben Raum befinden, werden alle Objekte mit einer Photon View zwischen ihnen synchronisiert, beschrieben in Kapitel \ref{ch:multi_user}.
 
 \section{Klassendiagramm}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[keepaspectratio,width=0.75\linewidth]{img/Klassendiagramm_T2.pdf}
+	\caption{Klassendiagramm des Multi-User Prototypen}
+	\label{fig:klassendiagramm_multi_user}
+\end{figure}
+
+Viele Scripts und Komponenten sind die gleichen wie beim Single-User Prototypen, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}. Dementsprechend werden hier nur die neuen oder geänderten Komponenten beschrieben. \\
+
+\noindent Der \grqq NetworkController\grqq{} ist für die Verbindungsaufnahme zu der Photon-Engine verantwortlich. Die Komponenten \grqq Photon Voice Network\grqq{} und \grqq Recorder\grqq{} stammen aus dem Photon-Voice Plugin und sind für die Kommunikation zwischen den Benutzer zuständig, beschrieben in Kapitel \ref{ch:kommunikation_zwischen_benutzern_realisierung}. \\
+Das Script \grqq Attachable\grqq{} funktioniert ähnlich wie bisher. Einziger Unterschied ist der Ablauf beim greifen eines Objektes. Hier ruft das Script erst noch die Funktion \textit{RequestOwnership()} auf um Besitzer des Objektes zu werden, beschrieben in Kapitel \ref{ch:gleichzeitige_interaktion_realisierung}. \\
+Das Script \grqq MovableObject\grqq{} zusammen mit den beiden Komponenten \grqq Photon View\grqq{} und \grqq Photon Transform View\grqq{} sind dafür zuständig, dass die Objekte zwischen den Instanzen synchronisiert werden, beschrieben in Kapitel \ref{ch:multi_user}.
