@@ -146,7 +146,7 @@ Während der Nutzerstudie mussten die Teilnehmer zwei Aufgaben erledigen. Bei be
 \subsection{Auswertung}
 Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Fragen gestellt:
 
-\begin{enumerate} [itemsep=1pt,topsep=0pt]
+\begin{enumerate} [itemsep=2pt]
 	\item Frage: Wie empfanden Sie die Steuerung mit dem Kontroller? \\
 	Auswertung: Die Teilnehmer fanden die Steuerung mit dem Controller sehr angenehm und intuitiv. Nur eine Person bemängelte, dass die verwendeten Buttons beschriftet hätten sein müssen um die Interaktion noch klarer zu machen.
 	
@@ -157,27 +157,27 @@ Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Frage
 	Auswertung: Das Highlight sowie das Snapping hat sehr vielen Teilnehmern besonders gefallen. Zwei Teilnehmer haben geschrieben, dass ihnen das einfach gehaltene Interface sowie die einfache Handhabung der Applikation gut gefallen hat.
 	
 	\item Frage: Wie natürlich empfanden Sie die Interaktion mit den Objekten? \\
-	Auswertung: 
+	Auswertung: Die Teilnehmer fanden die Interaktion mit den Objekten sehr natürlich. Dank den Features wie das Snapping, die Baugruppen und das Highlight fiel es den Teilnehmern sehr leicht mit den Objekten zu interagieren und dementsprechend wirkte die Interaktion natürlicher.
 	
 	\item Frage: Welche Variante der Rückmeldung einer nicht erlaubten Bewegung hat Ihnen am besten gefallen und wieso? \\
-	Auswertung: 
-	
-	% TODO: Auswertung fertigmachen
+	Auswertung: Fünf von den sechs Teilnehmern fanden die Variante mit dem Vibrations-Feedback am besten geeignet für diese Applikation. Es sei die natürlichste Variante und der Benutzer bemerke eine unerlaubte Bewegung auch dann, falls er das Bauteil gerade nicht im Blickfeld hat. \\
+	Die Variante mit dem Einfärben der Bauteile passe nicht. Möglicherweise wurde die Farbe falsch gewählt und deswegen erscheine es unnatürlich, meinten zwei Teilnehmer. \\
+	Die dritte Variante, bei welcher die Freiheitsgrade eingeschränkt wurden, könnten sich zwei Teilnehmer bei gewissen Teilen der Applikation vorstellen. \grqq Beim Anbringen einer Schraube könnte ich mir diese Variante mit den Freiheitsgraden vorstellen\grqq{}, meinte einer dieser beiden Teilnehmern. Der andere schrieb, dass er sich eine Kombination der beiden Varianten vorstellen könnte: \grqq Kombination von Variante 1 und 2 würde gut passen. Weiter weg zum fahren, sobald nah genug dann Snapping und je nachdem Vibration.\grqq{}
 \end{enumerate}
 
-
+\pagebreak
 \section{Schlussfolgerung}
 Dank den diversen Inputs der Betreuungsperson sowie Kollegen, welche sich während der Arbeit im Immersive Realities Lab aufgehalten haben, konnten bereits sehr früh Features angepasst oder gar hinzugefügt werden, wie das zum Beispiel beim Feature Baugruppen der Fall war. Dank diesen Anpassungen war der Prototyp bereits vor den Nutzerevaluationen auf einem guten Stand. \\
 
-\noindent Die Teilnehmer der Nutzerevaluation waren sehr zufrieden mit dem Single-User Prototyp. Bemängelt wurde einzig die Implementation der Variante, bei welcher die Freiheitsgrade der Benutzer eingeschränkt wird. Diese Variante hatte öfters Probleme, da sich die Objekte anders verhalten hatten als sie sollten oder diese gar in der Szene umhergesprungen sind. Dementsprechend ist die Bewertung dieser Variante insgesamt schlechter ausgefallen. 
+\noindent Die Teilnehmer der Nutzerevaluation waren sehr zufrieden mit dem Single-User Prototyp. Bemängelt wurde einzig die Implementation der Variante, bei welcher die Freiheitsgrade der Benutzer eingeschränkt wird. Diese Variante hatte öfters Probleme, da sich die Objekte anders verhalten hatten als sie sollten oder diese gar in der Szene umhergesprungen sind. Dementsprechend ist die Bewertung dieser Variante insgesamt schlechter ausgefallen. \\
 
-%TODO: Welche Variante ist nun die beste?
+\noindent Die meisten Teilnehmer fanden die Vibrations-Feedback Variante am besten geeignet für diese Applikation. Dementsprechend wird diese Variante für den zweiten Prototypen verwendet. Falls es die Zeit zulässt, könnte sich überlegt werden, gewisse Bauteile, wie zum Beispiel Schrauben, mit der Einschränkung der Freiheitsgrade zu implementieren.
 
 \section{Systemarchitektur}
 \label{ch:systemarchitektur_single_user}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[keepaspectratio,width=0.75\linewidth]{img/ArchitekturT1.pdf}
+	\includegraphics[keepaspectratio,width=0.65\linewidth]{img/ArchitekturT1.pdf}
 	\caption{Systemarchitektur des Single-User Prototypen}
 	\label{fig:systemarchitektur_single_user}
 \end{figure}
