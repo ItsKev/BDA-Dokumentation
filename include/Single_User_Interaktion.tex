@@ -183,8 +183,8 @@ Dank den diversen Inputs der Betreuungsperson sowie Kollegen, welche sich währe
 	\label{fig:systemarchitektur_single_user}
 \end{figure}
 
-Die Systemarchitektur des Single-User Prototypen wurde sehr simple gehalten, wie in Abbildung \ref{fig:systemarchitektur_single_user} zu sehen ist. Als Basis dient die Game-Engine Unity und alle zur Verfügung gestellten Features. Das für die Virtual Reality Anbindung verwendete SteamVR Plugin kommuniziert mit Unity und stellt eine Schnittstelle für eigens geschrieben Scripts dar. Die Blender Modelle werden von Unity importiert und in ein nutzbares Format innerhalb von Unity konvertiert. \\
-Die erstellten Scripts und verwendeten Komponenten, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}, befinden sich auf den konvertieren Blender Modellen oder verwendeten SteamVR Komponenten. Die Scripts verwenden Funktionen des SteamVR-Plugins und von Unity selbst.
+Die Systemarchitektur des Single-User Prototypen wurde sehr simple gehalten, wie in Abbildung \ref{fig:systemarchitektur_single_user} zu sehen ist. Als Basis dient die Game-Engine Unity und alle zur Verfügung gestellten Features. Das für die Virtual Reality Anbindung verwendete SteamVR Plugin kommuniziert mit Unity und stellt eine Schnittstelle für eigens geschrieben Skripte dar. Die Blender Modelle werden von Unity importiert und in ein nutzbares Format innerhalb von Unity konvertiert. \\
+Die erstellten Skripte und verwendeten Komponenten, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}, befinden sich auf den konvertieren Blender Modellen oder verwendeten SteamVR Komponenten. Die Skripte verwenden Funktionen des SteamVR-Plugins und von Unity selbst.
 
 
 \section{Klassendiagramm}
@@ -197,9 +197,9 @@ Die erstellten Scripts und verwendeten Komponenten, beschrieben in Kapitel \ref{
 	\label{fig:klassendiagramm_single_user}
 \end{figure}
 
-Der \grqq Player\grqq{} ist eine Komponente, welche von SteamVR-Plugin genommen wurde, beschrieben in Kapitel \ref{ch:steamvr_plugin}. An dieser Komponente wurde lediglich der linken und rechten Hand ein Script \grqq AttachTo\grqq{} hinzugefügt. Dieses Script fängt die Inputs des Benutzers ab und teilt beim greifen eines Objektes dem \grqq Attachable\grqq{} Script mit, dass es nun gegriffen wurde. \\
+Der \grqq Player\grqq{} ist eine Komponente, welche von SteamVR-Plugin genommen wurde, beschrieben in Kapitel \ref{ch:steamvr_plugin}. An dieser Komponente wurde lediglich der linken und rechten Hand ein Skript \grqq AttachTo\grqq{} hinzugefügt. Dieses Skript fängt die Inputs des Benutzers ab und teilt beim greifen eines Objektes dem \grqq Attachable\grqq{} Skript mit, dass es nun gegriffen wurde. \\
 
-\noindent Die Maschine wurde in verschieden Teile unterteilt, jeder Teil der Maschine kann bewegt und auseinandergenommen werden. Die Funktionalität der Scripts wurde in folgenden Kapiteln beschrieben:
+\noindent Die Maschine wurde in verschieden Teile unterteilt, jeder Teil der Maschine kann bewegt und auseinandergenommen werden. Die Funktionalität der Skripts wurde in folgenden Kapiteln beschrieben:
 
 \begin{itemize} [itemsep=1pt,topsep=0pt]	
 	\item Highlight: Zuständig für das Highlight der Bauteile, falls sich eine Hand des Benutzers in einem befindet sowie das Highlight des Snappings. Beides ist beschrieben im Kapitel \ref{ch:highlight_realisierung}.

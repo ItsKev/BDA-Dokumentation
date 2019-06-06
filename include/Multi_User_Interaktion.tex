@@ -167,7 +167,7 @@ Die erste Instanz, welche sich mit der Photon-Engine verbindet, wird automatisch
 	\label{fig:klassendiagramm_multi_user}
 \end{figure}
 
-Viele Scripts und Komponenten sind die gleichen wie beim Single-User Prototypen, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}. Dementsprechend werden hier nur die neuen oder geänderten Komponenten beschrieben. \\
+Viele Skripte und Komponenten sind die gleichen wie beim Single-User Prototypen, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}. Dementsprechend werden hier nur die neuen oder geänderten Komponenten beschrieben. \\
 Der \grqq NetworkController\grqq{} ist für die Verbindungsaufnahme zu der Photon-Engine verantwortlich. Die Komponenten \grqq Photon Voice Network\grqq{} und \grqq Recorder\grqq{} stammen aus dem Photon-Voice Plugin und sind für die Kommunikation zwischen den Benutzer zuständig, beschrieben in Kapitel \ref{ch:kommunikation_zwischen_benutzern_realisierung}. \\
-Das Script \grqq Attachable\grqq{} funktioniert ähnlich wie bisher. Einziger Unterschied ist der Ablauf beim greifen eines Objektes. Hier ruft das Script erst noch die Funktion \textit{RequestOwnership()} auf um Besitzer des Objektes zu werden, beschrieben in Kapitel \ref{ch:gleichzeitige_interaktion_realisierung}. \\
-Das Script \grqq MovableObject\grqq{} zusammen mit den beiden Komponenten \grqq Photon View\grqq{} und \grqq Photon Transform View\grqq{} sind dafür zuständig, dass die Objekte zwischen den Instanzen synchronisiert werden, beschrieben in Kapitel \ref{ch:multi_user}.
+Das Skript \grqq Attachable\grqq{} funktioniert ähnlich wie bisher. Einziger Unterschied ist der Ablauf beim greifen eines Objektes. Hier ruft das Skript erst noch die Funktion \textit{RequestOwnership()} auf um Besitzer des Objektes zu werden, beschrieben in Kapitel \ref{ch:gleichzeitige_interaktion_realisierung}. \\
+Das Skript \grqq MovableObject\grqq{} zusammen mit den beiden Komponenten \grqq Photon View\grqq{} und \grqq Photon Transform View\grqq{} sind dafür zuständig, dass die Objekte zwischen den Instanzen synchronisiert werden, beschrieben in Kapitel \ref{ch:multi_user}.
