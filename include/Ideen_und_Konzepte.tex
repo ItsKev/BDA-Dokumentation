@@ -67,8 +67,6 @@ Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem
 \end{center}
 \captionof{table}{Varianten für das Feedback beim Zusammenbau}\label{tbl:varianten_zusammenbau}
 
-% TODO: Architektur Diagramm benötigt?
-
 \pagebreak
 \section{Multi-User Prototyp}
 Der Multi-User Prototyp soll auf dem Single-User Prototyp aufbauen und alle Features von diesem implementieren. Die Erkenntnisse aus der ersten Nutzerevaluation sollen ebenfalls in den zweiten Prototypen einfliessen.
@@ -88,7 +86,7 @@ Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden fol
 		\vspace{1pt}
 		Kopf und Hände der Benutzer werden in der virtuellen Umgebung abgebildet & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Gesten und Gaze können dargestellt werden
+			\item Gesten und die Rotation des Kopfes können dargestellt werden
 		\end{itemize} & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Den Kopf und die Hände ohne Körper zu sehen kann sehr unnatürlich wirken
@@ -118,6 +116,7 @@ Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden fol
 
 \bigskip
 Für diesen Typ Applikation ist es nicht notwendig einen Ganzkörper Avatar zu verwenden. Dieser würde nur weitere Detektoren benötigen und bringt keinen Mehrwert. Die Gesten können auch mit einem einfachen Avatar dem Gegenüber gezeigt werden. \\
+
 \noindent Ein einfacher Avatar bestehend aus Kopf, Oberkörper und den beiden Händen kann ohne zusätzlichen Detektoren umgesetzt werden. Dabei sehen die anderen Benutzer zusätzlich die Orientierung der anderen Benutzern, was für die Zusammenarbeit von Vorteil sein kann. Dementsprechend wird im Projekt ein Avatar mit einem Oberkörper verwendet.
 
 \subsection{Kommunikation zwischen den Benutzern}
@@ -149,7 +148,7 @@ Für diesen Typ Applikation ist es nicht notwendig einen Ganzkörper Avatar zu v
 		\end{itemize} \\
 		\hline
 		\vspace{1pt}
-		Kommunikation anhand der Körpersprache - Gesten und Gaze & 
+		Kommunikation anhand der Körpersprache - Gesten und die Rotation des Kopfes & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Einfach und verständlich
 		\end{itemize} & 
@@ -233,5 +232,3 @@ Die erste Variante macht in der umzusetzende Applikation die Zusammenarbeit umst
 Die Variante bei welcher der Mittelwert aller Inputs genommen wird, wird ebenfalls nicht umgesetzt, da sich die Bewegung des Objektes für alle beteiligten Benutzer unnatürlich anfühlen würde. \\
 Die Variante mit den abstrahierten Objekte in der realen Welt würden den Benutzern das natürlichste Verhalten geben, kann aber nicht umgesetzt werden, da die Applikation auch verteilt funktionieren soll und sich die Benutzer für diese Variante im selben Raum befinden müssten. \\
 Dementsprechend werden die letzten beiden Varianten implementiert und anhand von Nutzertests evaluiert, welche Variante sich für diese Applikation besser eigenen würde.
-
-% TODO: Architekturdiagramm benötigt?

@@ -6,7 +6,7 @@ Mit dem Projekt und den Erkenntnissen des Single-User Prototypen begann die Erst
 
 \subsection{Multi User}
 \label{ch:multi_user}
-Um die Applikation Multi-User tauglich zu machen, wurde die Photon-Engine verwendet (\cite{noauthor_photon_2019}). Diese Engine stellt ein Unity-Asset zur Verfügung mit verschiedenen Beispielen wie die Engine einzusetzen ist. \\
+Um die Applikation Multi-User tauglich zu machen, wurde die Photon-Engine verwendet (\cite{noauthor_photon_2019}). Entwickelt wurde diese von der Firma Exit Games. Diese Firma stellt ein Unity-Asset zur Verfügung mit verschiedenen Beispielen wie das Asset zusammen mit der Photon-Engine einzusetzen ist. \\
 
 \noindent Auf der Webseite von Photon kann nach einem erfolgreichen Login eine neue Applikation erstellt werden. Für den Multi-User Prototyp wurde eine Realtime-Applikation erstellt mit bis zu 20 gleichzeitigen Benutzern. Soll eine Applikation mit mehr als 20 gleichzeitigen Nutzern erstellt werden, wird dies kostenpflichtig. Nach dem erstellen kann die erhaltene App ID, zu sehen in Abbildung \ref{fig:photon_dashboard}, in Unity verwendet werden.
 
@@ -65,7 +65,7 @@ Für die Kommunikation zwischen den Benutzern wurde ebenfalls auf die Photon-Eng
 \subsection{Gleichzeitige Interaktion am selben Objekt}
 \label{ch:gleichzeitige_interaktion_realisierung}
 
-Durch die Erkenntnisse während Arbeit mit der Photon-Engine wurde bewusst, dass eine simultane Interaktion am selben Objekt nicht möglich ist, da immer nur ein Benutzer Besitzer eines Bauteils sein kann. Da nur der Besitzer das Bauteil verschieben kann, müssten andere Technologien verwendet werden. Im Kapitel \ref{ch:gleichzeitige_interaktion} wurde entschieden, die beiden Varianten «First come, First grab» und Zauberstab zu implementieren. Beide Varianten verlangen keine simultane Interaktion am selben Objekt und konnten daher umgesetzt werden. \\
+Durch die Erkenntnisse während Arbeit mit der Photon-Engine wurde klar, dass eine simultane Interaktion am selben Objekt nicht möglich ist, da immer nur ein Benutzer Besitzer eines Bauteils sein kann. Da nur der Besitzer das Bauteil verschieben kann, müssten andere Technologien verwendet werden. Im Kapitel \ref{ch:gleichzeitige_interaktion} wurde entschieden, die beiden Varianten «First come, First grab» und Zauberstab zu implementieren. Beide Varianten verlangen keine simultane Interaktion am selben Objekt und konnten daher umgesetzt werden. \\
 
 \noindent Die Variante «First come, First grab» funktioniert wie folgt. Alle Benutzer können Bauteile greifen und diese verschieben solange kein anderer das Bauteil aktuell am manipulieren ist. Der genaue Ablauf ist im nachfolgenden Pseudocode veranschaulicht.
 
@@ -93,10 +93,7 @@ Für die zweite Variante würde dem Prototypen ein Zauberstab hinzugefügt, welc
 \section{Evaluation}
 Nach Fertigstellung des Multi-User Prototypen wurde ebenfalls, wie schon nach dem ersten Prototypen, eine Nutzerstudie durchgeführt. Anhand dieser Nutzerstudie sollte evaluiert werden, welche der beschriebenen Varianten im Kapitel \ref{ch:gleichzeitige_interaktion_realisierung} sich besser für die Anwendung eignet.
 
-\subsection{Teilnehmer}
-An der zweiten Nutzerstudie haben 13 Nutzer teilgenommen. Einige Teilnehmer hatten noch keine Erfahrungen mit Virtual Reality.
-
-\subsection{Ablauf}
+\subsection{Aufgabenstellung}
 Für diesen Nutzertest wurden immer zwei Teilnehmer gleichzeitig benötigt. Falls einer von beiden noch keine Erfahrungen mit Virtual Reality hatte, oder sein Partner noch nicht Verfügbar war, wurde ihnen das Bogenschiessen im Spiel \grqq The Lab\grqq{} gezeigt (\cite{noauthor_lab_2019}). Hier ging es darum, dass sich die Teilnehmer vor dem Benutzen der Multi-User Applikation mit Virtual Reality vertraut machen konnten. \\
 
 \noindent Anschliessend war es die Aufgabe zusammen vier verschiedene Motoren zusammenzubauen. Zweimal mit der Variante «First come, First grab» und zweimal mit der Variante mit dem Zauberstab. \\
@@ -119,8 +116,10 @@ Dafür hat immer einer der beiden Teilnehmer gesehen an welche Position das Baut
 	\end{minipage}
 \end{figure}
 
-\subsection{Auswertung}
-Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen gestellt:
+\subsection{Resultat}
+An der zweiten Nutzerstudie haben 13 Nutzer teilgenommen. Alle Teilnehmer bekamen für die Teilnahme an der Nutzerstudie einen 10.- CHF Gutschein für Digitec Galaxus. Einige Teilnehmer hatten noch keine Erfahrungen mit Virtual Reality. \\
+
+\noindent Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen gestellt:
 
 \begin{enumerate} [itemsep=1pt,topsep=0pt]
 	\item Frage: Wie gut funktionierte die Interaktion mit der anderen Person? \\
@@ -139,11 +138,9 @@ Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen
 	Ein Teilnehmer fand, dass die Bauteile leicht verschiebbar sein sollten, ohne diese packen zu müssen: \grqq Teile sollten leicht stoss bar sein.\grqq{}
 \end{enumerate}
 
-\section{Schlussfolgerung}
-
-Der zweite Teil des Projektes verlief dank der Photon-Engine und dem von ihnen zur Verfügung gestellten Plugin nahezu reibungslos. Die Erkenntnisse aus dem ersten Teil des Projekts konnten erfolgreich umgesetzt werden. Während der Nutzerevaluationen des ersten Single-User Prototypen wurden diverse Bugs gefunden, welche im nun im Multi-User Prototyp behoben werden konnten. Aus zeitlichen Gründen wurde nur die Vibrations-Feedback Variante umgesetzt, nicht aber die Kombination zweier Varianten, welche im Kapitel \ref{ch:schlussfolgerung_t1} beschrieben wurde. \\
-
-\noindent Die Teilnehmer der zweiten Nutzerevaluation waren mit dem Multi-User Prototyp sehr zufrieden. Leider kam es bei den gestellten Aufgaben öfters zu Problemen, da zum Beispiel richtig zusammengesetzte Bauteile als falsch zusammengebaut erkannt und der nächste Schritt nicht angezeigt wurde. Aber obwohl diese Probleme aufgetreten sind, haben die Teilnehmer die Maschine mithilfe von \grqq Trial and Error\grqq{} zusammenbauen können und hatten bemerkbar Freude dabei. \\
+\pagebreak
+\subsection{Schlussfolgerung}
+Die Teilnehmer der zweiten Nutzerevaluation waren mit dem Multi-User Prototyp sehr zufrieden. Leider kam es bei den gestellten Aufgaben öfters zu Problemen, da zum Beispiel richtig zusammengesetzte Bauteile als falsch zusammengebaut erkannt und der nächste Schritt nicht angezeigt wurde. Aber obwohl diese Probleme aufgetreten sind, haben die Teilnehmer die Maschine mithilfe von \grqq Trial and Error\grqq{} zusammenbauen können und hatten bemerkbar Freude dabei. \\
 
 \noindent Anhand den Antworten der Teilnehmer haben beide Varianten Anwendungsgebiete. Die Variante \grqq First come, First grab\grqq{} kann für das gemeinsame arbeiten mit Objekten in der virtuellen Realität verwendet werden. Sobald es in den Bereich der Schulung geht oder ein Benutzer anderen was zeigen will, ohne dass diese mit den Objekten interagieren, würde sich die zweite Variante mit dem Zauberstab empfehlen.
 

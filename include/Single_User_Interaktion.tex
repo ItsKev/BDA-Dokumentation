@@ -18,11 +18,10 @@ Das verwendete \grqq Player\grqq-Prefab beinhaltet die folgenden Punkte, um welc
 
 \subsection{Highlight}
 \label{ch:highlight_realisierung}
-Dank der Beispiel Szene im SteamVR Asset, beschrieben im Kapitel \ref{ch:highlight}, war sehr schnell klar, wie das Highlight der Objekte bei im Asset selbst gemacht wird. \\
-Um die Silhouette des Objektes gelb umrahmen zu können, wird das Material aller MeshRenderer (in Unity zuständig für die visuelle Darstellung eines GameObjects) des Objektes ersetzt, mit einem Material, auf welchem sich ein spezifischer Shader befindet. Dieser Shader zeichnet nur die Aussenlinie des Meshes und macht alles innerhalb dieser Linie transparent. Um die originale Farbe des Objektes nicht zu verlieren, wird das Objekt erst kopiert und anschliessend das Material auf dem kopierten Objekt geändert. \\
+Dank der Beispiel Szene im SteamVR Asset, beschrieben im Kapitel \ref{ch:highlight}, war sehr schnell klar, wie das Highlight der Objekte bei im Asset selbst gemacht wird. Um die Silhouette des Objektes gelb umrahmen zu können, wird das Material aller MeshRenderer (in Unity zuständig für die visuelle Darstellung eines GameObjects) des Objektes ersetzt, mit einem Material, auf welchem sich ein spezifischer Shader befindet. Dieser Shader zeichnet nur die Aussenlinie des Meshes und macht alles innerhalb dieser Linie transparent. Um die originale Farbe des Objektes nicht zu verlieren, wird das Objekt erst kopiert und anschliessend das Material auf dem kopierten Objekt geändert. Die Kopie des Objektes muss erstellt werden, da das originale Material beibehalten werden soll. Würde das Material direkt auf dem Objekt angepasst, würde nur noch die gelbe Aussenlinie zu sehen sein. Diese Lösung ist sehr ineffizient und könnte besser gelöst werden. Mehr dazu im Kapitel \ref{ch:Ausblick}. \\
 
-\noindent Das Highlight in der Single-User Applikation wurde genau wie im vorherigen Abschnitt beschrieben implementiert. An dein beiden Controllern des Benutzers wurde jeweils ein Collider hinzugefügt, welcher aber keine Kollision verursacht sondern lediglich ein Event feuert, sobald er mit einem anderen Collider in Berührung kommt. Diese Art der Collider wird auch Trigger genannt. \\
-Dieses Event wird von der Applikation abgefangen und löst das Highlight des kollidierten Objektes aus, wie in Abbildung \ref{fig:highlight_single_user_application} zu sehen ist.
+\noindent Das Highlight in der Single-User Applikation wurde genau wie im vorherigen Abschnitt beschrieben implementiert. An den beiden Controllern des Benutzers wurde jeweils ein Trigger hinzugefügt. Ein Trigger ist ein Collider, welcher aber keine Kollision verursacht sondern lediglich ein Event feuert, sobald er mit einem anderen Collider oder Trigger in Berührung kommt. \\
+Dieses Event wird von der Applikation abgefangen und löst das Highlight des kollidierten Objektes aus. Dies ist in Abbildung \ref{fig:highlight_single_user_application} dargestellt.
 
 \begin{figure}[h!]
 	\centering
@@ -57,8 +56,7 @@ Dafür wird eine Kopie des Bauteils mitsamt dem Trigger erstellt, so positionier
 \label{ch:kollision_single_user}
 Falls das Bauteil, wie in Kapitel \ref{ch:kollision} beschrieben, nur von der Hand losgelöst wird, kann es nicht ohne weiteres wieder an die Hand des Benutzers gemacht werden beim verlassen der Kollision. Auch andere Ansätze funktionierten nicht direkt so wie gedacht. \\
 
-\noindent Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den Bauteilen ein Rigidbody angehängt werden. Dieser ist für die Physik-Berechnungen zuständig und kann konstante Beschleunigungen oder eine konstante Geschwindigkeit auf das Bauteil geben. \\
-Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welches sich aktuell an der Hand des Benutzers befindet, mitgeteilt, dass es nicht mehr Kinematisch sein soll. Damit wird bewirkt, dass dieses Bauteil sich mithilfe der Physik bewegen kann (Die Gravitation ist deaktiviert). Da das Bauteil so aber langsam in eine Richtung gleiten würde muss ihm eine konstante Geschwindigkeit zum Controller hin gegeben werden. So versucht sich das Bauteil in die Richtung des Controllers zu bewegen, kollidiert aber mit anderen Bauteilen, welche sich im Weg befinden. Dies ist in der Abbildung \ref{fig:collision} dargestellt.
+\noindent Um die Kollision der Bauteile so natürlich wie möglich zu machen, mussten den Bauteilen ein Rigidbody angehängt werden. Dieser ist für die Physik-Berechnungen zuständig und kann konstante Beschleunigungen oder eine konstante Geschwindigkeit auf das Bauteil geben. Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welches sich aktuell an der Hand des Benutzers befindet, mitgeteilt, dass es nicht mehr Kinematisch sein soll. Damit wird bewirkt, dass dieses Bauteil sich mithilfe der Physik bewegen kann (Die Gravitation ist deaktiviert). Da das Bauteil so aber langsam in eine Richtung gleiten würde, muss ihm eine konstante Geschwindigkeit zum Controller hin gegeben werden. Die Geschwindigkeit errechnet sich durch die Distanz des Bauteils zum Controller des Benutzers. Diese Distanz ist ein dreidimensionaler Vektor, welcher in eine bestimmte Richtung zeigt. Das heisst, dass der Vektor grösser wird umso grösser die Distanz zwischen dem Bauteil und dem Controller werden. Sobald das Bauteil mit keinem anderen Bauteil mehr kollidiert, wird der Rigidbody wieder Kinematisch und die Geschwindigkeit auf null gesetzt. Dieses Verhalten ist in Abbildung \ref{fig:collision} dargestellt.
 
 \begin{figure}[h!]
 	\centering
@@ -71,16 +69,16 @@ Sobald nun zwei Bauteile kollidieren, wird dem Rigidbody auf dem Bauteil, welche
 \label{ch:baugruppen}
 Während der Arbeit wurde bemerkt, dass es sehr umständlich sein kann, mehrere Bauteile miteinander zu transportieren. Alle Bauteile mussten an einem Ort auseinandergenommen werden nur um diese an einem anderen Ort wieder zusammenzubauen. Um dies zu erleichtern wurde jedem Bauteil eine List von Kindern angehängt, welche besagt, welche Bauteile mit dem aktuellen Bauteil mitbewegt werden sollen. Dies resultiert darin, dass es bei jeder Maschine ein Bauteil gibt, an welchem alle anderen Bauteile direkt oder indirekt über andere Bauteile befestigt sind. \\
 
-\noindent Um dem Benutzer mitteilen zu können, in welcher Situation er welche Bauteile zusammen bewegen kann, wurde das Highlight, beschrieben in Kapitel \ref{ch:highlight_realisierung}, wie folgt angepasst. Für jedes Kind des Bauteils wurde überprüft, ob es zum aktuellen Zeitpunkt verbunden ist und falls dies der Fall ist, wird auch von diesem Bauteile eine Kopie erstellt und der Shader für das Highlight hinzugefügt. Somit werden alle Bauteile, welche miteinander bewegt werden können, wie in Abbildung \ref{fig:highlight_baugruppe} ersichtlich, mit einem Highlight versehen.
+\noindent Um dem Benutzer mitteilen zu können, in welcher Situation er welche Bauteile zusammen bewegen kann, wurde das Highlight, beschrieben in Kapitel \ref{ch:highlight_realisierung}, wie folgt angepasst. Für jedes Kind des Bauteils wurde überprüft, ob es zum aktuellen Zeitpunkt verbunden ist und falls dies der Fall ist, wird auch von diesem Bauteil eine Kopie erstellt und der Shader für das Highlight hinzugefügt. Somit werden alle Bauteile, welche miteinander bewegt werden können, wie in Abbildung \ref{fig:highlight_baugruppe} ersichtlich, mit einem Highlight versehen.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Baugruppe_Highlight.PNG}
+	\includegraphics[keepaspectratio,width=0.37\linewidth]{img/Baugruppe_Highlight.PNG}
 	\caption{Highlight einer Baugruppe}
 	\label{fig:highlight_baugruppe}
 \end{figure}
 
-\subsection{Feedback beim Zusammembau / Manipulation der Objekte}
+\subsection{Feedback beim Zusammenbau / Manipulation der Objekte}
 \label{ch:feedback_zusammenbau_manipulation}
 
 Da drei verschiedene Varianten, beschrieben in Kapitel \ref{ch:feedback_zusammenbau_konzepte}, implementiert wurden, wurde für jede Variante ein eigener Prototyp mit einer eigenen Maschine erstellt. \\
@@ -89,12 +87,11 @@ Da drei verschiedene Varianten, beschrieben in Kapitel \ref{ch:feedback_zusammen
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Kollision_Variante1.PNG}
+	\includegraphics[keepaspectratio,width=0.37\linewidth]{img/Kollision_Variante1.PNG}
 	\caption{Visuelles Feedback bei einer Kollision}
 	\label{fig:kollision_variante_1}
 \end{figure}
 
-\bigskip
 Für die Umsetzung der zweiten Variante, bei welcher die Freiheitsgrade des Benutzers eingeschränkt werden, wurde die Ausrichtung des Triggers verwendet, welcher für das Snapping gebraucht wird. Sobald sich das Bauteil im Bereich des automatischen Snappings befindet, wird das Bauteil in der Hand des Benutzers anhand des Triggers ausgerichtet. Zur gleichen Zeit wird zwischen den beiden Bauteilen ein Joint platziert. Ein Joint ist eine Verbindung zwischen zwei Bauteilen und hat je nach Art des Joints unterschiedliche Eigenschaften. Im Falle dieser Applikation wird ein Joint verwendet, bei welchem zwei Achsen sowie die Rotation in allen Achsen fixiert werden. Somit lässt sich das Bauteil, wie in Abbildung \ref{fig:einschraenkung_freiheitsgrade} zu sehen, nur noch auf einer Achse bewegen.
 
 \begin{figure}[h!]
@@ -117,10 +114,8 @@ Die dritte Variante, mit dem Vibrations Feedback, konnte mithilfe des SteamVR As
 \section{Evaluation}
 Nach Abschluss der Realisierungsphase des Single-User Prototypen wurde eine Nutzerevaluation durchgeführt um den Prototypen zu evaluieren und um entscheiden zu können, welcher der drei beschrieben Varianten in Kapitel \ref{ch:feedback_zusammenbau_manipulation} sich für diese Applikation am besten eignet. 
 
-\subsection{Teilnehmer}
-Insgesamt haben sechs Teilnehmer an der Nutzerevaluation teilgenommen. Alle Teilnehmer hatten bereits Erfahrungen mit Virtual Reality. 
 
-\subsection{Ablauf}
+\subsection{Aufgabenstellung}
 Während der Nutzerstudie mussten die Teilnehmer zwei Aufgaben erledigen. Bei beiden Aufgaben wurden ihnen drei Maschinen gezeigt mit jeweils einer anderen Art des Feedbacks beim Zusammenbau / Manipulation der Objekte.
 \begin{enumerate}
 	\item In der ersten Aufgabe ging es darum, eine Maschine zusammenzubauen, welche sich in einer explosionsartigen Darstellung vor dem Nutzer befand. 
@@ -143,8 +138,11 @@ Während der Nutzerstudie mussten die Teilnehmer zwei Aufgaben erledigen. Bei be
 	
 \end{enumerate}
 
-\subsection{Auswertung}
-Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Fragen gestellt:
+\pagebreak
+\subsection{Resultat}
+Insgesamt haben sechs Teilnehmer an der Nutzerevaluation teilgenommen. Alle Teilnehmer hatten bereits Erfahrungen mit Virtual Reality. \\
+
+\noindent Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Fragen gestellt:
 
 \begin{enumerate} [itemsep=2pt]
 	\item Frage: Wie empfanden Sie die Steuerung mit dem Kontroller? \\
@@ -166,13 +164,11 @@ Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden fünf Frage
 \end{enumerate}
 
 \pagebreak
-\section{Schlussfolgerung}
+\subsection{Schlussfolgerung}
 \label{ch:schlussfolgerung_t1}
-Dank den diversen Inputs der Betreuungsperson sowie Kollegen, welche sich während der Arbeit im Immersive Realities Lab aufgehalten haben, konnten bereits sehr früh Features angepasst oder gar hinzugefügt werden, wie das zum Beispiel beim Feature Baugruppen der Fall war. Dank diesen Anpassungen war der Prototyp bereits vor den Nutzerevaluationen auf einem guten Stand. \\
+Die Teilnehmer der Nutzerevaluation waren sehr zufrieden mit dem Single-User Prototyp. Bemängelt wurde einzig die Implementation der Variante, bei welcher die Freiheitsgrade der Benutzer eingeschränkt wird. Diese Variante hatte öfters Probleme, da sich die Objekte anders verhalten hatten als sie sollten oder diese gar in der Szene umhergesprungen sind. Dementsprechend ist die Bewertung dieser Variante insgesamt schlechter ausgefallen. Bei der Variante, bei welcher die Bauteile eingefärbt werden wurde vermutlich die Farbe falsch gewählt. Das rot symbolisierte eher, dass etwas falsche gemacht wurde, anstatt der Kollision mit anderen Bauteilen. Mit einer anderen Farbwahl, oder einer transparenterer Farbe, hätte die Nutzerevaluation eventuell anders ausfallen können. \\
 
-\noindent Die Teilnehmer der Nutzerevaluation waren sehr zufrieden mit dem Single-User Prototyp. Bemängelt wurde einzig die Implementation der Variante, bei welcher die Freiheitsgrade der Benutzer eingeschränkt wird. Diese Variante hatte öfters Probleme, da sich die Objekte anders verhalten hatten als sie sollten oder diese gar in der Szene umhergesprungen sind. Dementsprechend ist die Bewertung dieser Variante insgesamt schlechter ausgefallen. \\
-
-\noindent Die meisten Teilnehmer fanden die Vibrations-Feedback Variante am besten geeignet für diese Applikation. Dementsprechend wird diese Variante für den zweiten Prototypen verwendet. Falls es die Zeit zulässt, könnte sich überlegt werden, gewisse Bauteile, wie zum Beispiel Schrauben, mit der Einschränkung der Freiheitsgrade zu implementieren.
+\noindent Die meisten Teilnehmer fanden die Vibrations-Feedback Variante am besten geeignet für diese Applikation. Dementsprechend wird diese Variante für den zweiten Prototypen verwendet. Falls es die Zeit zulässt, könnte sich überlegt werden, gewisse Bauteile, wie zum Beispiel Schrauben, mit der Kombination von Vibration und Einschränkung der Freiheitsgrade zu implementieren.
 
 \section{Systemarchitektur}
 \label{ch:systemarchitektur_single_user}
@@ -183,7 +179,7 @@ Dank den diversen Inputs der Betreuungsperson sowie Kollegen, welche sich währe
 	\label{fig:systemarchitektur_single_user}
 \end{figure}
 
-Die Systemarchitektur des Single-User Prototypen wurde sehr simple gehalten, wie in Abbildung \ref{fig:systemarchitektur_single_user} zu sehen ist. Als Basis dient die Game-Engine Unity und alle zur Verfügung gestellten Features. Das für die Virtual Reality Anbindung verwendete SteamVR Plugin kommuniziert mit Unity und stellt eine Schnittstelle für eigens geschrieben Skripte dar. Die Blender Modelle werden von Unity importiert und in ein nutzbares Format innerhalb von Unity konvertiert. \\
+Die Systemarchitektur des Single-User Prototypen ist in Abbildung \ref{fig:systemarchitektur_single_user} dargestellt. Als Basis dient die Game-Engine Unity und alle zur Verfügung gestellten Features. Das für die Virtual Reality Anbindung verwendete SteamVR Plugin kommuniziert mit Unity und stellt eine Schnittstelle für eigene Skripte dar. Die Blender Modelle werden von Unity importiert und in ein nutzbares Format innerhalb von Unity konvertiert. \\
 Die erstellten Skripte und verwendeten Komponenten, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}, befinden sich auf den konvertieren Blender Modellen oder verwendeten SteamVR Komponenten. Die Skripte verwenden Funktionen des SteamVR-Plugins und von Unity selbst.
 
 
@@ -197,7 +193,7 @@ Die erstellten Skripte und verwendeten Komponenten, beschrieben in Kapitel \ref{
 	\label{fig:klassendiagramm_single_user}
 \end{figure}
 
-Der \grqq Player\grqq{} ist eine Komponente, welche von SteamVR-Plugin genommen wurde, beschrieben in Kapitel \ref{ch:steamvr_plugin}. An dieser Komponente wurde lediglich der linken und rechten Hand ein Skript \grqq AttachTo\grqq{} hinzugefügt. Dieses Skript fängt die Inputs des Benutzers ab und teilt beim greifen eines Objektes dem \grqq Attachable\grqq{} Skript mit, dass es nun gegriffen wurde. \\
+Der \grqq Player\grqq{} ist ein Prefab, welches vom SteamVR-Plugin zur Verfügung gestellt wird, beschrieben in Kapitel \ref{ch:steamvr_plugin}. An diesem Prefab wurde lediglich der linken und rechten Hand ein Skript \grqq AttachTo\grqq{} hinzugefügt. Dieses Skript fängt die Inputs des Benutzers ab und teilt beim Greifen eines Objektes dem \grqq Attachable\grqq{} Skript mit, dass es nun gegriffen wurde. \\
 
 \noindent Die Maschine wurde in verschieden Teile unterteilt, jeder Teil der Maschine kann bewegt und auseinandergenommen werden. Die Funktionalität der Skripts wurde in folgenden Kapiteln beschrieben:
 

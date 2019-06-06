@@ -8,3 +8,7 @@ Mit den vorliegenden Prototypen wurde eine solide Grundlage für das gemeinsame 
 	
 	\item Damit eine neue Maschine in der Applikation integriert werden kann sind aktuell viele Schritte notwendig. Um dies zu erleichtern müsste die Integration entweder automatisiert oder die Anzahl Schritte erheblich verringert werden. Zudem können zum aktuellen Zeitpunkt nur Modelle implementiert werden, bei welchen jedes Bauteil eine Rotation von 0$^{\circ}$ auf allen Achsen hat. Ansonsten funktioniert das «Snapping» nicht richtig.
 \end{itemize}
+
+In Kapitel \ref{ch:highlight_realisierung} wurde beschrieben, dass für das Highlight einer Kopie des Bauteils gemacht und auf diese Kopie dann das neue Material gepackt wird. Dies ist sehr ineffizient und könnte einfacher gelöst werden. Jeder \grqq Mesh Renderer\grqq{} ist in der Lage mehrere Material gleichzeitig zu besitzen. Da das Highlight-Material nichts vom original Material verdeckt, werden diese beiden Materialien ohne Probleme dargestellt. \\
+
+\noindent Ein Folgeprojekt könnte sich darauf fokussieren, CAD oder ähnliche Modelle automatisch für Unity zu konvertieren. Diese Modelle könnten dann (semi-) automatisch in die bestehende Multi-User Applikation integriert und vorbereitet werden, so dass im besten Falle ein Modell direkt aus einem 3D-Programm in die Multi-User Applikation exportiert und verwendet werden kann.
