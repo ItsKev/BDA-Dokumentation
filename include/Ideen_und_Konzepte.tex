@@ -2,7 +2,7 @@
 \label{ch:Ideen_und_Konzepte}
 
 \section{Single-User Prototyp}
-Um dem Nutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen, sind die folgenden Features in der Umsetzung geplant:
+Um dem Benutzer die Interaktion mit den Bauteilen so intuitiv und angenehm wie möglich zu machen, sind die folgenden Features in der Umsetzung geplant:
 
 \subsection{Highlight}
 \label{ch:highlight}
@@ -21,7 +21,7 @@ Bauteile in der virtuellen Realität präzise zu platzieren kann oft sehr schwie
 	
 \subsection{Kollision}
 \label{ch:kollision}
-Beim Bewegen der Bauteile sollten diese mit anderen Bauteilen, welche sich in der virtuellen Umgebung befinden, kollidieren. Da alle Bauteile aber nur virtuell verfügbar sind und die Hand in der realen Welt nicht an etwas abprallen kann, muss dies in der virtuellen Realität simuliert werde. \\
+Beim Bewegen der Bauteile sollten diese mit anderen Bauteilen, welche sich in der virtuellen Umgebung befinden, kollidieren. Da alle Bauteile aber nur virtuell verfügbar sind und die Hand in der realen Welt nicht an etwas abprallen kann, muss dies in der virtuellen Realität simuliert werden. \\
 Um dies zu Realisieren müssen beide Bauteile einen Collider besitzen. Sobald ein Kollisions-Event gesendet wird, wird das Bauteil von der Hand des Spielers losgelöst. Die Physik-Engine von Unity berechnet dann welche Auswirkungen die Kollision auf das Bauteil hat.
 	
 \subsection{Feedback beim Zusammenbau / Manipulation der Objekte}
@@ -38,14 +38,14 @@ Da Bauteile nicht durch andere Bauteile hindurch bewegt werden können, muss dem
 		\vspace{1pt}
 		Visuelles Feedback, falls ein Bauteil mit einem anderen kollidiert & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Ist für alle Nutzer sichtbar
+			\item Ist für alle Benutzer sichtbar
 		\end{itemize} &
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Kann dem Benutzer sehr unnatürlich erscheinen
 		\end{itemize} \\
 		\hline
 		\vspace{1pt}
-		Einschränkungen der Freiheitsgrade sobald das Bauteil eine gewisse Position erreicht, wie in Abbildung \ref{fig:VADEAssembly} zu sehen. 
+		Einschränkungen der Freiheitsgrade sobald das Bauteil eine gewisse Position erreicht, wie in Abbildung \ref{fig:VADEAssembly} zu sehen ist 
 		\vspace{2pt} & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Das Zusammenbauen des Bauteils wird dem Benutzer erleichtert
@@ -93,12 +93,12 @@ Anhand der Recherchen, siehe Kapitel \ref{ch:avatar_repraesentation}, wurden fol
 		\end{itemize} \\
 		\hline
 		\vspace{1pt}
-		Einfacher Avatar welcher den Oberkörper abbildet & 
+		Einfacher Avatar, welcher den Oberkörper abbildet & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Funktioniert ohne zusätzliche Detektoren
 		\end{itemize} & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Versperrt dem andern Benutzer möglicherweise die Sicht auf Teile von relevanten Objekten
+			\item Versperrt dem anderen Benutzer möglicherweise die Sicht auf Teile von relevanten Objekten
 		\end{itemize} \\
 		\hline
 		\vspace{1pt}
@@ -162,12 +162,12 @@ Für diesen Typ Applikation ist es nicht notwendig einen Ganzkörper Avatar zu v
 
 \bigskip
 Da die Applikation auch verteilt über mehrere Standorte funktionieren soll, muss entweder Variante eins oder drei aus der Tabelle \ref{tbl:varianten_kommunikation} umgesetzt werden.  \\
-Da die HTC Hive ein Mikrophon sowie Kopfhörer integriert hat, kann die erste Variante ohne zusätzliche Hardware umgesetzt werden. Um die Kommunikation zwischen den Benutzern so verständlich wie möglich zu machen wird zusätzlich zu der ersten Variante noch die dritte Variante umgesetzt, welche dank dem geplanten Avatar, beschrieben in Kapitel \ref{ch:avatar_repraesentation_realisierung}, implementiert werden kann.
+Da die HTC Hive ein Mikrophon sowie Kopfhörer integriert hat, kann die erste Variante ohne zusätzliche Hardware umgesetzt werden. Um die Kommunikation zwischen den Benutzern so verständlich wie möglich zu machen, wird zusätzlich zu der ersten Variante noch die dritte Variante umgesetzt, welche dank dem geplanten Avatar, beschrieben in Kapitel \ref{ch:avatar_repraesentation_realisierung}, implementiert werden kann.
 
 
 \subsection{Gleichzeitige Interaktion am selben Objekt}
 \label{ch:gleichzeitige_interaktion}
-Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine Lösung gefunden werden, damit keine Inkonsistenzen zwischen den Benutzern entsteht, falls ein Benutzer das Bauteil an einen anderen Ort bewegt als der andere. Im Bereich der Gleichzeitigen Interaktion am selben Objekt gibt es sehr viele Varianten, über welche Forschungen und Paper veröffentlicht worden sind (siehe Kapitel \ref{ch:collaborative_user_interaction}). Anhand dieser wurde die nachfolgende Tabelle erstellt:
+Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine Lösung gefunden werden, damit keine Inkonsistenzen zwischen den Benutzern entsteht, falls ein Benutzer das Bauteil an einen anderen Ort bewegt als der andere. Im Bereich der Gleichzeitigen Interaktion am selben Objekt, gibt es sehr viele Varianten, über welche Forschungen und Paper veröffentlicht worden sind (siehe Kapitel \ref{ch:collaborative_user_interaction}). Anhand dieser wurde die nachfolgende Tabelle erstellt:
 
 \begin{center}
 	\begin{tabularx} {\textwidth} { | B | B | B | }
@@ -177,7 +177,7 @@ Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine 
 		\color{white} \textbf{Contra} \\
 		\hline
 		\vspace{1pt}
-		Separierung der Freiheitsgrade – Ein Nutzer steuert die Position, ein anderer die Rotation des Objektes &  &
+		Separierung der Freiheitsgrade – Ein Benutzer steuert die Position, ein anderer die Rotation des Objektes &  &
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Umständlich für eine Engineering Applikation
 			\item Behindert die Zusammenarbeit
@@ -185,7 +185,7 @@ Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine 
 		\end{itemize} \\
 		\hline
 		\vspace{1pt}
-		Berechnung des Mittelwerts aller Inputs der Nutzer & 
+		Berechnung des Mittelwerts aller Inputs der Benutzer & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Gleichzeitige Manipulation
 		\end{itemize} & 
@@ -207,7 +207,7 @@ Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine 
 		\vspace{1pt}
 		Zauberstab – Nur der Benutzer mit dem Zauberstab kann das Objekt manipulieren &
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert
+			\item Natürliches Verhalten, da nur ein Benutzer das Objekt manipuliert
 		\end{itemize} &
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Nur ein Benutzer kann die Umgebung bearbeiten
@@ -216,7 +216,7 @@ Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine 
 		\vspace{1pt}
 		«First come, First grab» Der Benutzer welcher eine Interaktion als erstes beginnt hat so lange die Macht über das Objekt bis er dieses wieder loslässt. & 
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
-			\item Natürliches Verhalten, da nur ein Nutzer das Objekt manipuliert
+			\item Natürliches Verhalten, da nur ein Benutzer das Objekt manipuliert
 		\end{itemize} &
 		\begin{itemize} [leftmargin=*,noitemsep,topsep=0pt]
 			\item Nur ein Benutzer kann das Objekt bearbeiten
@@ -230,5 +230,5 @@ Falls zwei Benutzer gleichzeitig dasselbe Objekt manipulieren wollen, muss eine 
 \bigskip
 Die erste Variante macht in der umzusetzende Applikation die Zusammenarbeit umständlicher als es sein muss. Da ein Objekt oftmals nicht nur die Position ändern soll sondern auch die Rotation müssten bei den meisten Interaktionen mehrere Benutzer beteiligt sein. \\
 Die Variante bei welcher der Mittelwert aller Inputs genommen wird, wird ebenfalls nicht umgesetzt, da sich die Bewegung des Objektes für alle beteiligten Benutzer unnatürlich anfühlen würde. \\
-Die Variante mit den abstrahierten Objekte in der realen Welt würden den Benutzern das natürlichste Verhalten geben, kann aber nicht umgesetzt werden, da die Applikation auch verteilt funktionieren soll und sich die Benutzer für diese Variante im selben Raum befinden müssten. \\
-Dementsprechend werden die letzten beiden Varianten implementiert und anhand von Nutzertests evaluiert, welche Variante sich für diese Applikation besser eigenen würde.
+Die Variante mit den abstrahierten Objekten in der realen Welt würde den Benutzern das natürlichste Verhalten geben, kann aber nicht umgesetzt werden, da die Applikation auch verteilt funktionieren soll und sich die Benutzer für diese Variante im selben Raum befinden müssten. \\
+Dementsprechend werden die letzten beiden Varianten implementiert und anhand von Nutzertests evaluiert, welche Variante sich für diese Applikation besser eignen würde.

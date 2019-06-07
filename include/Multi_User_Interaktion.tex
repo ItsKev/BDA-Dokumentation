@@ -6,9 +6,9 @@ Mit dem Projekt und den Erkenntnissen des Single-User Prototypen begann die Erst
 
 \subsection{Multi User}
 \label{ch:multi_user}
-Um die Applikation Multi-User tauglich zu machen, wurde die Photon-Engine verwendet (\cite{noauthor_photon_2019}). Entwickelt wurde diese von der Firma Exit Games. Diese Firma stellt ein Unity-Asset zur Verfügung mit verschiedenen Beispielen wie das Asset zusammen mit der Photon-Engine einzusetzen ist. \\
+Um die Applikation Multi-User tauglich zu machen, wurde die Photon-Engine verwendet (\cite{noauthor_photon_2019}). Entwickelt wurde diese von der Firma Exit Games. Diese Firma stellt ein Unity-Asset zur Verfügung, mit verschiedenen Beispielen wie das Asset zusammen mit der Photon-Engine einzusetzen ist. \\
 
-\noindent Auf der Webseite von Photon kann nach einem erfolgreichen Login eine neue Applikation erstellt werden. Für den Multi-User Prototyp wurde eine Realtime-Applikation erstellt mit bis zu 20 gleichzeitigen Benutzern. Soll eine Applikation mit mehr als 20 gleichzeitigen Nutzern erstellt werden, wird dies kostenpflichtig. Nach dem erstellen kann die erhaltene App ID, zu sehen in Abbildung \ref{fig:photon_dashboard}, in Unity verwendet werden.
+\noindent Auf der Webseite von Photon kann nach einem erfolgreichen Login eine neue Applikation erstellt werden. Für den Multi-User Prototyp wurde eine Realtime-Applikation erstellt mit bis zu 20 gleichzeitigen Benutzern. Soll eine Applikation mit mehr als 20 gleichzeitigen Benutzern erstellt werden, wird dies kostenpflichtig. Nach dem erstellen kann die erhaltene App ID, zu sehen in Abbildung \ref{fig:photon_dashboard}, in Unity verwendet werden.
 
 \begin{figure}[h!]
 	\centering
@@ -17,12 +17,13 @@ Um die Applikation Multi-User tauglich zu machen, wurde die Photon-Engine verwen
 	\label{fig:photon_dashboard}
 \end{figure} 
 
-Mit der App ID kann Unity sich nun auf die Applikation verbinden. Die erste Instanz, welche sich verbindet wird automatisch als Master deklariert. Um nun mit anderen Instanzen kommunizieren zu können, müssen diese sich mit einen virtuellen Raum verbinden. Sobald sich beide im gleichen Raum befinden, kann die Kommunikation beginnen.\\
+Mit der App ID kann Unity sich nun auf die Applikation verbinden. Die erste Instanz, welche sich verbindet wird automatisch als Master deklariert. Um nun mit anderen Instanzen kommunizieren zu können, müssen diese sich mit einen virtuellen Raum verbinden. Sobald sich beide Instanzen im gleichen Raum befinden, kann die Kommunikation beginnen.\\
+
 Jeglichen Objekten, welche nun untereinander synchronisiert werden sollen, muss die Komponente Photon View hinzugefügt werden. Diese besitzt die folgenden Parameter:
 \begin{itemize} [itemsep=1pt]
 	\item Owner: Der aktuelle Besitzer der Objekts
 	\item View ID: Eindeutige Identität des Objektes
-	\item Observed Components: Welche Komponenten des Objektes mit den anderen Instanzen synchronisiert werden soll.
+	\item Observed Components: Welche Komponenten des Objektes mit den anderen Instanzen synchronisiert werden sollen
 \end{itemize}
 
 Für die Synchronisation vieler standardmässigen Unity-Komponenten stellt die Photon-Engine schon Komponenten zur Verfügung. Eine dieser Komponenten, die Photon Transform View, wurde im Prototyp verwendet, um die Position und die Rotation des Objektes zu synchronisieren. Somit werden diese beiden Eigenschaften mit allen Instanzen synchronisiert, welche nicht Besitzer des Objektes sind. Es ist aber nicht möglich als Nicht-Besitzer ein Objekt zu bewegen. \\
@@ -49,25 +50,25 @@ Wie in Kapitel \ref{ch:avatar_repraesentation_realisierung} beschrieben, wurde f
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[keepaspectratio,width=0.4\linewidth]{img/Avatar.PNG}
+	\includegraphics[keepaspectratio,width=0.35\linewidth]{img/Avatar.PNG}
 	\caption{Avatar leicht nach links blickend}
 	\label{fig:avatar}
 \end{figure} 
 
-Der Benutzer selbst sieht von seinem eigenen Avatar nur die Hände mit den Controllern. Der Oberkörper sowie der Kopf sind für ihn unsichtbar, da sie sonst in der Quere des Sichtfelds sein würden. Um den Avatar mit den anderen Instanzen zu synchronisieren wurde ebenfalls, wie in Kapitel \ref{ch:multi_user} beschrieben, auf jede Komponente des Avatars eine Photon View hinzugefügt. Somit sehen die Benutzer sich untereinander und können mithilfe von Gesten miteinander Kommunizieren.
+Der Benutzer selbst sieht von seinem eigenen Avatar nur die Hände mit den Controllern. Der Oberkörper sowie der Kopf sind für ihn unsichtbar, da sie sonst in der Quere des Sichtfelds sein würden. Um den Avatar mit den anderen Instanzen zu synchronisieren. wurde ebenfalls, wie in Kapitel \ref{ch:multi_user} beschrieben, auf jede Komponente des Avatars eine Photon View hinzugefügt. Somit sehen sich die Benutzer untereinander und können mithilfe von Gesten miteinander Kommunizieren.
 
 \subsection{Kommunikation zwischen den Benutzern}
 \label{ch:kommunikation_zwischen_benutzern_realisierung}
 Für die Kommunikation zwischen den Benutzern wurde ebenfalls auf die Photon-Engine zurückgegriffen. Im Photon Dashboard, zu sehen in Abbildung \ref{fig:photon_dashboard}, wurde eine Voice Applikation erstellt und die erhaltene App ID konnte dann in Unity, zusätzlich zu der App ID für die Realtime-Applikation, eingeben werden. \\
 
-\noindent Um die Voice Applikation nutzen zu können, muss einem leeren GameObject in der Szene eine \grqq Photon Voice Network\grqq{} Komponente sowie ein \grqq Recorder\grqq{} hinzugefügt werden. Diese Komponenten sind ebenfalls aus einem Plugin der Photon-Engine namens Photon Voice (\cite{noauthor_photon_2019-1}). So wird der Sound über das Mikrophon des Benutzers aufgenommen. Für die Wiedergabe wurde dem Avatar zusätzlich eine \grqq Speaker\grqq{}-Komponente, welche ebenfalls aus dem Photon Voice Plugin stammt, hinzugefügt. Somit können die Benutzer miteinander über grosse Distanzen kommunizieren. 
+\noindent Um die Voice Applikation nutzen zu können, muss einem leeren GameObject in der Szene eine \grqq Photon Voice Network\grqq{} Komponente sowie ein \grqq Recorder\grqq{} hinzugefügt werden. Diese Komponenten sind ebenfalls aus einem Plugin der Firma Exit Games namens Photon Voice (\cite{noauthor_photon_2019-1}). So wird der Sound über das Mikrophon des Benutzers aufgenommen. Für die Wiedergabe wurde dem Avatar zusätzlich eine \grqq Speaker\grqq{}-Komponente, welche ebenfalls aus dem Photon Voice Plugin stammt, hinzugefügt. Somit können die Benutzer miteinander über grosse Distanzen kommunizieren. 
 
 \subsection{Gleichzeitige Interaktion am selben Objekt}
 \label{ch:gleichzeitige_interaktion_realisierung}
 
-Durch die Erkenntnisse während Arbeit mit der Photon-Engine wurde klar, dass eine simultane Interaktion am selben Objekt nicht möglich ist, da immer nur ein Benutzer Besitzer eines Bauteils sein kann. Da nur der Besitzer das Bauteil verschieben kann, müssten andere Technologien verwendet werden. Im Kapitel \ref{ch:gleichzeitige_interaktion} wurde entschieden, die beiden Varianten «First come, First grab» und Zauberstab zu implementieren. Beide Varianten verlangen keine simultane Interaktion am selben Objekt und konnten daher umgesetzt werden. \\
+Durch die Erkenntnisse während der Arbeit mit der Photon-Engine wurde klar, dass eine simultane Interaktion am selben Objekt nicht möglich ist, da immer nur ein Benutzer Besitzer eines Bauteils sein kann. Da nur der Besitzer das Bauteil verschieben kann, müssten andere Technologien verwendet werden. Im Kapitel \ref{ch:gleichzeitige_interaktion} wurde entschieden, die beiden Varianten «First come, First grab» und Zauberstab zu implementieren. Beide Varianten verlangen keine simultane Interaktion am selben Objekt und konnten daher umgesetzt werden. \\
 
-\noindent Die Variante «First come, First grab» funktioniert wie folgt. Alle Benutzer können Bauteile greifen und diese verschieben solange kein anderer das Bauteil aktuell am manipulieren ist. Der genaue Ablauf ist im nachfolgenden Pseudocode veranschaulicht.
+\noindent Die Variante «First come, First grab» funktioniert wie folgt. Alle Benutzer können Bauteile greifen und diese verschieben, solange kein anderer das Bauteil aktuell am manipulieren ist. Der genaue Ablauf ist im nachfolgenden Pseudocode veranschaulicht.
 
 \begin{algorithm}
 	Der Benutzer versucht das Bauteil zu greifen\;
@@ -81,7 +82,7 @@ Durch die Erkenntnisse während Arbeit mit der Photon-Engine wurde klar, dass ei
 	}
 \end{algorithm}
 
-Für die zweite Variante würde dem Prototypen ein Zauberstab hinzugefügt, welcher ebenfalls greifbar und mit einer Photon View sowie einer Photon Transform View ausgestattet ist. Somit wird die Position wie auch die Rotation zwischen allen Benutzern synchronisiert. Nur derjenige Benutzer, welcher aktuell in Besitz des Zauberstabs ist, kann Bauteile manipulieren. Um den Zauberstab nicht immer in der Hand halten zu müssen, wird dieser beim greifen rechts bzw. links neben der Hand platziert und bewegt sich mit dieser mit, siehe Abbildung \ref{fig:magic_wand}. Möchte ein anderer Benutzer die virtuelle Umgebung manipulieren muss er den Zauberstab vom aktuellen Benutzer übernehmen, indem er den Zauberstab an der Hand des anderen Benutzers greift.
+Für die zweite Variante wurde dem Prototypen ein Zauberstab hinzugefügt, welcher ebenfalls greifbar und mit einer Photon View sowie einer Photon Transform View ausgestattet ist. Somit wird die Position wie auch die Rotation zwischen allen Benutzern synchronisiert. Nur derjenige Benutzer, welcher aktuell in Besitz des Zauberstabs ist, kann Bauteile manipulieren. Um den Zauberstab nicht immer in der Hand halten zu müssen, wird dieser beim greifen rechts bzw. links neben der Hand platziert und bewegt sich mit dieser mit, siehe Abbildung \ref{fig:magic_wand}. Möchte ein anderer Benutzer die virtuelle Umgebung manipulieren muss er den Zauberstab vom aktuellen Benutzer übernehmen, indem er den Zauberstab an der Hand des anderen Benutzers greift.
 
 \begin{figure}[h!]
 	\centering
@@ -90,11 +91,12 @@ Für die zweite Variante würde dem Prototypen ein Zauberstab hinzugefügt, welc
 	\label{fig:magic_wand}
 \end{figure} 
 
+\pagebreak
 \section{Evaluation}
 Nach Fertigstellung des Multi-User Prototypen wurde ebenfalls, wie schon nach dem ersten Prototypen, eine Nutzerstudie durchgeführt. Anhand dieser Nutzerstudie sollte evaluiert werden, welche der beschriebenen Varianten im Kapitel \ref{ch:gleichzeitige_interaktion_realisierung} sich besser für die Anwendung eignet.
 
 \subsection{Aufgabenstellung}
-Für diesen Nutzertest wurden immer zwei Teilnehmer gleichzeitig benötigt. Falls einer von beiden noch keine Erfahrungen mit Virtual Reality hatte, oder sein Partner noch nicht Verfügbar war, wurde ihnen das Bogenschiessen im Spiel \grqq The Lab\grqq{} gezeigt (\cite{noauthor_lab_2019}). Hier ging es darum, dass sich die Teilnehmer vor dem Benutzen der Multi-User Applikation mit Virtual Reality vertraut machen konnten. \\
+Für diesen Nutzertest wurden immer zwei Teilnehmer gleichzeitig benötigt. Falls einer von beiden noch keine Erfahrungen mit Virtual Reality hatte, oder sein Partner noch nicht Verfügbar war, wurde ihnen das Bogenschiessen im Spiel \grqq The Lab\grqq{} gezeigt (\cite{noauthor_lab_2019}). Hier ging es darum, dass sich die Teilnehmer, vor dem Benutzen der Multi-User Applikation mit Virtual Reality vertraut machen konnten. \\
 
 \noindent Anschliessend war es die Aufgabe zusammen vier verschiedene Motoren zusammenzubauen. Zweimal mit der Variante «First come, First grab» und zweimal mit der Variante mit dem Zauberstab. \\
 Dafür hat immer einer der beiden Teilnehmer gesehen an welche Position das Bauteil muss (Abbildung \ref{fig:wohin}) und der andere hat gesehen, welches Bauteil an diese Stelle muss (Abbildung \ref{fig:welches}). Dies wechselte immer zwischen den Teilnehmer. So wurde die Zusammenarbeit forciert, dass nicht einer alles alleine machen konnte.
@@ -117,9 +119,10 @@ Dafür hat immer einer der beiden Teilnehmer gesehen an welche Position das Baut
 \end{figure}
 
 \subsection{Resultat}
-An der zweiten Nutzerstudie haben 13 Nutzer teilgenommen. Alle Teilnehmer bekamen für die Teilnahme an der Nutzerstudie einen 10.- CHF Gutschein für Digitec Galaxus. Einige Teilnehmer hatten noch keine Erfahrungen mit Virtual Reality. \\
+An der zweiten Nutzerstudie haben 13 Nutzer teilgenommen. Alle Teilnehmer bekamen für die Teilnahme an der Nutzerstudie einen 10.- CHF Gutschein für Digitec Galaxus. Einige Teilnehmer hatten noch keine Erfahrungen mit Virtual Reality.
 
-\noindent Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen gestellt:
+\pagebreak
+Den Teilnehmern wurden nach dem Abschluss der Aufgaben die folgenden vier Fragen gestellt:
 
 \begin{enumerate} [itemsep=1pt,topsep=0pt]
 	\item Frage: Wie gut funktionierte die Interaktion mit der anderen Person? \\
@@ -142,7 +145,9 @@ An der zweiten Nutzerstudie haben 13 Nutzer teilgenommen. Alle Teilnehmer bekame
 \subsection{Schlussfolgerung}
 Die Teilnehmer der zweiten Nutzerevaluation waren mit dem Multi-User Prototyp sehr zufrieden. Leider kam es bei den gestellten Aufgaben öfters zu Problemen, da zum Beispiel richtig zusammengesetzte Bauteile als falsch zusammengebaut erkannt und der nächste Schritt nicht angezeigt wurde. Aber obwohl diese Probleme aufgetreten sind, haben die Teilnehmer die Maschine mithilfe von \grqq Trial and Error\grqq{} zusammenbauen können und hatten bemerkbar Freude dabei. \\
 
-\noindent Anhand den Antworten der Teilnehmer haben beide Varianten Anwendungsgebiete. Die Variante \grqq First come, First grab\grqq{} kann für das gemeinsame arbeiten mit Objekten in der virtuellen Realität verwendet werden. Sobald es in den Bereich der Schulung geht oder ein Benutzer anderen was zeigen will, ohne dass diese mit den Objekten interagieren, würde sich die zweite Variante mit dem Zauberstab empfehlen.
+\noindent Anhand der Antworten der Teilnehmer haben beide Varianten Anwendungsgebiete. Die Variante \grqq First come, First grab\grqq{} kann für das gemeinsame arbeiten mit Objekten in der virtuellen Realität verwendet werden. Sobald es in den Bereich der Schulung geht oder ein Benutzer anderen was zeigen will, ohne dass diese mit den Objekten interagieren, würde sich die zweite Variante mit dem Zauberstab empfehlen. \\
+
+\noindent Viele Teilnehmer können sich vorstellen, dass diese Methode über ein Bauteil zu diskutieren, in Zukunft in der Wirtschaft eingesetzt wird. Dazu muss die Hardware aber noch einige Fortschritte machen und unabhängig von einem Computer nutzbar sein. 
 
 \section{Systemarchitektur}
 \begin{figure}[h!]
@@ -152,8 +157,7 @@ Die Teilnehmer der zweiten Nutzerevaluation waren mit dem Multi-User Prototyp se
 	\label{fig:systemarchitektur_mutli_user}
 \end{figure}
 
-Die beiden Instanzen sind grundsätzlich genau gleich aufgebaut wie in der Single-User Applikation, beschrieben in Kapitel \ref{ch:systemarchitektur_single_user}. Um mit der Photon-Engine kommunizieren zu können musste zusätzlich noch das Photon-Engine Plugin sowie das Photon-Voice Plugin hinzugefügt werden. \\
-Die erste Instanz, welche sich mit der Photon-Engine verbindet, wird automatisch zur Master-Instanz. Nach dem Verbinden mit der Photon-Engine wird die Instanz mit einem Photon-Raum verbunden. Sobald sich nun zwei Instanzen im selben Raum befinden, werden alle Objekte mit einer Photon View zwischen ihnen synchronisiert, beschrieben in Kapitel \ref{ch:multi_user}.
+Die beiden Instanzen sind grundsätzlich genau gleich aufgebaut wie in der Single-User Applikation, beschrieben in Kapitel \ref{ch:systemarchitektur_single_user}. Um mit der Photon-Engine kommunizieren zu können musste zusätzlich noch das Photon-Engine Plugin sowie das Photon-Voice Plugin hinzugefügt werden. Die erste Instanz, welche sich mit der Photon-Engine verbindet, wird automatisch zur Master-Instanz. Nach dem Verbinden mit der Photon-Engine wird die Instanz mit einem Photon-Raum verbunden. Sobald sich nun zwei Instanzen im selben Raum befinden, werden alle Objekte mit einer Photon View zwischen ihnen synchronisiert, beschrieben in Kapitel \ref{ch:multi_user}.
 
 \section{Klassendiagramm}
 
@@ -165,6 +169,6 @@ Die erste Instanz, welche sich mit der Photon-Engine verbindet, wird automatisch
 \end{figure}
 
 Viele Skripte und Komponenten sind die gleichen wie beim Single-User Prototypen, beschrieben in Kapitel \ref{ch:klassendiagram_single_user}. Dementsprechend werden hier nur die neuen oder geänderten Komponenten beschrieben. \\
-Der \grqq NetworkController\grqq{} ist für die Verbindungsaufnahme zu der Photon-Engine verantwortlich. Die Komponenten \grqq Photon Voice Network\grqq{} und \grqq Recorder\grqq{} stammen aus dem Photon-Voice Plugin und sind für die Kommunikation zwischen den Benutzer zuständig, beschrieben in Kapitel \ref{ch:kommunikation_zwischen_benutzern_realisierung}. \\
-Das Skript \grqq Attachable\grqq{} funktioniert ähnlich wie bisher. Einziger Unterschied ist der Ablauf beim greifen eines Objektes. Hier ruft das Skript erst noch die Funktion \textit{RequestOwnership()} auf um Besitzer des Objektes zu werden, beschrieben in Kapitel \ref{ch:gleichzeitige_interaktion_realisierung}. \\
-Das Skript \grqq MovableObject\grqq{} zusammen mit den beiden Komponenten \grqq Photon View\grqq{} und \grqq Photon Transform View\grqq{} sind dafür zuständig, dass die Objekte zwischen den Instanzen synchronisiert werden, beschrieben in Kapitel \ref{ch:multi_user}.
+Der \grqq NetworkController\grqq{} ist für die Verbindungsaufnahme zu der Photon-Engine verantwortlich. Die Komponenten \grqq Photon Voice Network\grqq{} und \grqq Recorder\grqq{} stammen aus dem Photon-Voice Plugin und sind für die Kommunikation zwischen den Benutzern zuständig, beschrieben in Kapitel \ref{ch:kommunikation_zwischen_benutzern_realisierung}. \\
+Das Skript \grqq Attachable\grqq{} funktioniert ähnlich wie bisher. Einziger Unterschied ist der Ablauf beim Greifen eines Objektes. Hier ruft das Skript erst noch die Funktion \textit{RequestOwnership()} auf um Besitzer des Objektes zu werden, beschrieben in Kapitel \ref{ch:gleichzeitige_interaktion_realisierung}. \\
+Das Skript \grqq MoveableObject\grqq{} zusammen mit den beiden Komponenten \grqq Photon View\grqq{} und \grqq Photon Transform View\grqq{} sind dafür zuständig, dass die Objekte zwischen den Instanzen synchronisiert werden, beschrieben in Kapitel \ref{ch:multi_user}.
